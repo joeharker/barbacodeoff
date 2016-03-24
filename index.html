@@ -72,18 +72,20 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="menu-item">
-									<a href="#" onclick="cordova.InAppBrowser.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=yes');" target="_self">
-										<cmg-entree-tile name="BURRITO" class="cmg-entree-tile-lg cmg-entree-burrito-img ng-isolate-scope">
-											<div class="cmg-entree-tile">
-												<div class="cmg-entree-title ng-binding">BURRITO</div>
-												<div class="select-button-box">
-													<div class="select-button-text">SELECT →</div>
+									
+										<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=yes');" target="_self">
+											<cmg-entree-tile name="BURRITO" class="cmg-entree-tile-lg cmg-entree-burrito-img ng-isolate-scope">
+												<div class="cmg-entree-tile">
+													<div class="cmg-entree-title ng-binding">BURRITO</div>
+													<div class="select-button-box">
+														<div class="select-button-text">SELECT →</div>
+													</div>
+													<div ng-transclude="imgSlot" class="img-responsive">
+														<img src="dist/images/entree-tile-burrito.jpg" class="ng-scope">
+													</div>
 												</div>
-												<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-burrito.jpg" class="ng-scope">
-												</div>
-											</div>
-										</cmg-entree-tile>
-									</a>
+											</cmg-entree-tile>
+										</a>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12">
