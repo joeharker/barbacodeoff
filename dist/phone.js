@@ -9,7 +9,7 @@
 	function onSuccess(imageData) {
 		c.lastPhoto = "data:image/jpeg;base64," + imageData;
 		if (c.callback !== undefined) {
-			c.callback();
+			c.callback(c.lastPhoto);
 		}
 	}
 
