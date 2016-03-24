@@ -1,0 +1,7 @@
+
+<div ng-class="{'closed': 'step-closed', 'active': 'step-active', 'open': 'step-open'}[$ctrl.state]"> 
+  <div ng-class="{'open': 'step-open-text', 'closed' : 'step-closed-text', 'active': 'step-open-text'}[$ctrl.state]" class="tradeGothicBold">TOP OFF YOUR MEAL</div>
+  <div ng-show="$ctrl.showToppings()">
+    <div ng-click="$ctrl.chooseToppings()" class="btn btn-primary btn-lg">SOUR CREAM</div>
+  </div>
+</div>

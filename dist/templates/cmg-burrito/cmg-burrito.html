@@ -1,0 +1,27 @@
+
+<hero img-class="hero-burrito" big-text="BURRITO" small-text="FLOUR TORTILLA WITH YOUR CHOICE OF MEAT OR SOFRITAS, RICE, BEANS OR FAJITA VEGGIES, SALSA, GUACAMOLE, AND SOUR CREAM OR CHEESE."></hero>Items: {{entreeCtrl.selectedItems}}
+<div id="cmg-step-container" class="col-lg-12">
+  <div class="col-lg-1 col-md-1"></div>
+  <div class="col-lg-8 col-md-8">
+    <div ng-class="{'active': 'step-active', 'open' : 'step-open'}[$ctrl.fillingState]">
+      <cmg-fillings>
+        <div class="col-lg-3 col-md-3">I'm extra</div>
+        <div class="col-lg-8 col-md-8">
+          <div class="tradeGothicBold step-open-text">CHOOSE FILLINGS</div>
+          <div class="row">
+            <div ng-repeat="filling in $ctrl.fillings" class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+              <cmg-menu-item title="{{filling.title}}" on-select="$ctrl.selectFilling(item)"><img src="dist/images/entree-tile-kids.jpg" class="img-responsive"/></cmg-menu-item>
+            </div>
+          </div>
+        </div>
+      </cmg-fillings>
+    </div>
+    <cmg-rice state="$ctrl.rice" on-select="$ctrl.selectRice()"></cmg-rice>
+    <cmg-beans state="$ctrl.beans" on-select="$ctrl.selectBeans()"></cmg-beans>
+    <cmg-toppings state="$ctrl.toppings" on-select="$ctrl.selectToppings()"></cmg-toppings>
+    <cmg-sides-drinks state="$ctrl.sidesDrinks" on-select="$ctrl.selectSidesDrinks()"></cmg-sides-drinks>
+  </div>
+  <div class="col-lg-3 col-md-3 hidden-sm">
+    <elevator></elevator>
+  </div>
+</div>
