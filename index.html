@@ -42,7 +42,7 @@
 			<header class="ng-isolate-scope">
 				<div id="header" class="content-center-center sticky-header">
 					<a href="#/otherwise"><img src="dist/images/cmg_logo.png"></a> &nbsp;
-					<img src="dist/images/card.png" onclick="camera.takePhoto(function (photo) { alert(photo); })" />
+					<img src="dist/images/card.png" onclick="camera.takePhoto(function (photo) { document.getElementById('codeoff').src = photo; })" />
 				</div>
 			</header>
 			<div class="sticky-torso">
@@ -176,9 +176,10 @@
 						</div>
 					</div>
 					<div id="notIntoIt" class="content-center-center">
+						<img id="codeoff" />
 						<!--<div class="text-center">
 							<div class="text-center cmg-bold myriadPro f-lg">Not into it?</div>
-							<div ng-hide="$ctrl.loading" class="text-center cmg-mellow myriadPro f-sm ng-binding ng-hide">We'll let  know you won't be ordering together.</div>
+							<div ng-hide="$ctrl.loading" class="text-center cmg-mellow myriadPro f-sm ng-binding ng-hide">We'll let know you won't be ordering together.</div>
 							<button onclick="alert('TODO')" class="btn btn-primary btn-lg">DECLINE INVITATION</button>
 						</div>-->
 					</div>

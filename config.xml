@@ -81,7 +81,8 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
-  <platform name="android">
+	<allow-intent href="https://order.chipotle.com/Meal/Index/73/*/*"/>
+	<platform name="android">
     <allow-intent href="market:*"/>
   </platform>
   <platform name="ios">
