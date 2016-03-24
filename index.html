@@ -32,6 +32,7 @@
 	</style>
 	<link type="text/css" href="dist/app.css" rel="stylesheet">
 	<script type="text/javascript" src="cordova.js"></script>
+	<script src="dist/phone.js"></script>
 	<script type="text/javascript" src="config.js"></script>
 	<!--<script type="text/javascript" src="dist/app.js"></script>-->
 </head>
@@ -39,7 +40,10 @@
 	<!-- uiView:  --><div ui-view="" class="ng-scope">
 		<group-order class="ng-scope ng-isolate-scope">
 			<header class="ng-isolate-scope">
-				<div id="header" class="content-center-center sticky-header"><a href="#/otherwise"><img src="dist/images/cmg_logo.png"></a></div>
+				<div id="header" class="content-center-center sticky-header">
+					<a href="#/otherwise"><img src="dist/images/cmg_logo.png"></a> &nbsp;
+					<img src="dist/images/card.png" onclick="camera.takePhoto(function (photo) { alert(photo); })" />
+				</div>
 			</header>
 			<div class="sticky-torso">
 				<hero img-class="group-hero-start" big-text="LET'S DO THIS TOGETHER">
@@ -68,14 +72,15 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="menu-item">
-									<a href="#/entree/burrito">
+									<a href="https://order.chipotle.com/Meal/Index/73">
 										<cmg-entree-tile name="BURRITO" class="cmg-entree-tile-lg cmg-entree-burrito-img ng-isolate-scope">
 											<div class="cmg-entree-tile">
 												<div class="cmg-entree-title ng-binding">BURRITO</div>
 												<div class="select-button-box">
 													<div class="select-button-text">SELECT →</div>
 												</div>
-												<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-burrito.jpg" class="ng-scope"></div>
+												<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-burrito.jpg" class="ng-scope">
+												</div>
 											</div>
 										</cmg-entree-tile>
 									</a>
@@ -83,69 +88,89 @@
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="menu-item">
-									<cmg-entree-tile name="BURRITO BOWL" class="cmg-entree-tile-lg cmg-entree-burrito-bowl-img ng-isolate-scope">
-										<div class="cmg-entree-tile">
-											<div class="cmg-entree-title ng-binding">BURRITO BOWL</div>
-											<div class="select-button-box">
-												<div class="select-button-text">SELECT →</div>
+									<a href="https://order.chipotle.com/Meal/Index/73">
+										<cmg-entree-tile name="BURRITO BOWL" class="cmg-entree-tile-lg cmg-entree-burrito-bowl-img ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">BURRITO BOWL</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
+												</div>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-burrito-bowl.jpg" class="ng-scope">
+												</div>
 											</div>
-											<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-burrito-bowl.jpg" class="ng-scope"></div>
-										</div>
-									</cmg-entree-tile>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<cmg-entree-tile name="TACO" class="cmg-entree-tile-sm ng-isolate-scope">
-										<div class="cmg-entree-tile">
-											<div class="cmg-entree-title ng-binding">TACO</div>
-											<div class="select-button-box">
-												<div class="select-button-text">SELECT →</div>
+									<a href="https://order.chipotle.com/Meal/Index/73">
+										<cmg-entree-tile name="TACO" class="cmg-entree-tile-sm ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">TACO</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
+												</div>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-taco.jpg" class="ng-scope">
+												</div>
 											</div>
-											<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-taco.jpg" class="ng-scope"></div>
-										</div>
-									</cmg-entree-tile>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<cmg-entree-tile name="SALAD" class="cmg-entree-tile-sm ng-isolate-scope">
-										<div class="cmg-entree-tile">
-											<div class="cmg-entree-title ng-binding">SALAD</div>
-											<div class="select-button-box">
-												<div class="select-button-text">SELECT →</div>
+									<a href="https://order.chipotle.com/Meal/Index/73">
+										<cmg-entree-tile name="SALAD" class="cmg-entree-tile-sm ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">SALAD</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
+												</div>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-salad.jpg" class="ng-scope">
+												</div>
 											</div>
-											<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-salad.jpg" class="ng-scope"></div>
-										</div>
-									</cmg-entree-tile>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<cmg-entree-tile name="KID'S MEAL" class="cmg-entree-tile-sm ng-isolate-scope">
-										<div class="cmg-entree-tile">
-											<div class="cmg-entree-title ng-binding">KID'S MEAL</div>
-											<div class="select-button-box">
-												<div class="select-button-text">SELECT →</div>
+									<a href="https://order.chipotle.com/Meal/Index/73">
+										<cmg-entree-tile name="KID'S MEAL" class="cmg-entree-tile-sm ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">KID'S MEAL</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
+												</div>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-kids.jpg" class="ng-scope">
+												</div>
 											</div>
-											<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-kids.jpg" class="ng-scope"></div>
-										</div>
-									</cmg-entree-tile>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<cmg-entree-tile name="SIDES &amp; DRINKS" class="cmg-entree-tile-sm ng-isolate-scope">
-										<div class="cmg-entree-tile">
-											<div class="cmg-entree-title ng-binding">SIDES &amp; DRINKS</div>
-											<div class="select-button-box">
-												<div class="select-button-text">SELECT →</div>
+									<a href="https://order.chipotle.com/Meal/Index/73">
+										<cmg-entree-tile name="SIDES &amp; DRINKS" class="cmg-entree-tile-sm ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">SIDES &amp; DRINKS</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
+												</div>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-sides-drinks.jpg" class="ng-scope">
+												</div>
 											</div>
-											<div ng-transclude="imgSlot" class="img-responsive"><img src="dist/images/entree-tile-sides-drinks.jpg" class="ng-scope"></div>
-										</div>
-									</cmg-entree-tile>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 						</div>
