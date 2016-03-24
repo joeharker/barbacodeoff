@@ -40,6 +40,7 @@
   <gap:plugin name="org.apache.cordova.vibration"/>
   -->
 
+	<gap:plugin name="org.apache.cordova.camera" />
   <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" />  <!--open in default browser-->
   <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" />  <!--splashscreen-->
 
