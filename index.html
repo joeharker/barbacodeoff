@@ -40,7 +40,7 @@
 	<!-- uiView:  --><div ui-view="" class="ng-scope">
 		<group-order class="ng-scope ng-isolate-scope">
 			<header class="ng-isolate-scope">
-				<div id="header" class="content-center-center sticky-header">
+				<div id="header" class="sticky-header">
 					<a href="#/otherwise"><img src="dist/images/cmg_logo.png"></a> &nbsp;
 					<img id="cards" class="hide" src="dist/images/card.png" style="float:right;" onclick="camera.takePhoto(function (photo) { document.getElementById('codeoff').src = photo; })" />
 				</div>
@@ -73,19 +73,19 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="menu-item">
 									
-										<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=no,clearsessioncache=yes');" target="_self">
-											<cmg-entree-tile name="BURRITO" class="cmg-entree-tile-lg cmg-entree-burrito-img ng-isolate-scope">
-												<div class="cmg-entree-tile">
-													<div class="cmg-entree-title ng-binding">BURRITO</div>
-													<div class="select-button-box">
-														<div class="select-button-text">SELECT →</div>
-													</div>
-													<div ng-transclude="imgSlot" class="img-responsive">
-														<img src="dist/images/entree-tile-burrito.jpg" class="ng-scope">
-													</div>
+									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=no,clearsessioncache=yes');" target="_self">
+										<cmg-entree-tile name="BURRITO" class="cmg-entree-tile-lg cmg-entree-burrito-img ng-isolate-scope">
+											<div class="cmg-entree-tile">
+												<div class="cmg-entree-title ng-binding">BURRITO</div>
+												<div class="select-button-box">
+													<div class="select-button-text">SELECT →</div>
 												</div>
-											</cmg-entree-tile>
-										</a>
+												<div ng-transclude="imgSlot" class="img-responsive">
+													<img src="dist/images/entree-tile-burrito.jpg" class="ng-scope">
+												</div>
+											</div>
+										</cmg-entree-tile>
+									</a>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12">
@@ -109,7 +109,7 @@
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=no');" target="_self">
+									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=no,clearsessioncache=yes');" target="_self">
 										<cmg-entree-tile name="TACO" class="cmg-entree-tile-sm ng-isolate-scope">
 											<div class="cmg-entree-tile">
 												<div class="cmg-entree-title ng-binding">TACO</div>
@@ -126,7 +126,7 @@
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=no');" target="_self">
+									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=no,clearsessioncache=yes');" target="_self">
 										<cmg-entree-tile name="SALAD" class="cmg-entree-tile-sm ng-isolate-scope">
 											<div class="cmg-entree-tile">
 												<div class="cmg-entree-title ng-binding">SALAD</div>
@@ -143,7 +143,7 @@
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=no');" target="_self">
+									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=no,clearsessioncache=yes');" target="_self">
 										<cmg-entree-tile name="KID'S MEAL" class="cmg-entree-tile-sm ng-isolate-scope">
 											<div class="cmg-entree-tile">
 												<div class="cmg-entree-title ng-binding">KID'S MEAL</div>
@@ -160,7 +160,7 @@
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="menu-item">
-									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_self', 'location=no');" target="_self">
+									<a href="#" onclick="window.open('https://order.chipotle.com/Meal/Index/73', '_blank', 'location=no,clearsessioncache=yes');" target="_self">
 										<cmg-entree-tile name="SIDES &amp; DRINKS" class="cmg-entree-tile-sm ng-isolate-scope">
 											<div class="cmg-entree-tile">
 												<div class="cmg-entree-title ng-binding">SIDES &amp; DRINKS</div>
@@ -383,7 +383,6 @@
 		window.open = cordova.InAppBrowser.open;
 	}
 	window.onload = function () {
-		console.log(camera);
 		if (camera.hasCamera()) {
 			document.getElementById('cards').classList.remove('hide');
 		}
