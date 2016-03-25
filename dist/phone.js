@@ -4,6 +4,7 @@
 	c.lastPhoto = "" + c.transparent;
 	c.callback = undefined;
 	c.takePhoto = takePhoto;
+	c.hasCammera = hasCammera;
 
 	//private functions
 	function onSuccess(imageData) {
@@ -33,6 +34,10 @@
 		}
 	}
 
+	function hasCammera() {
+		return (navigator.camera !== undefined);
+	}
+
 	return c;
 })();
 
@@ -40,5 +45,9 @@
 //in app browser init
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+	console.log(cordova);
 	window.open = cordova.InAppBrowser.open;
+	if (camera.hasCammera()) {
+		document.getElementById('cards').classList.remove('hide');
+	}
 }
