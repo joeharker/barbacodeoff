@@ -37,7 +37,7 @@
 })();
 
 
-//init
+//in app browser init
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	window.open = cordova.InAppBrowser.open;
