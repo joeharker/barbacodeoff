@@ -82,7 +82,7 @@
   <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
   <access origin="https://order.chipotle.com/Meal/Index/73"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>
-	<allow-intent href="https://order.chipotle.com/Meal/Index/73/*/*"/>
+	<allow-intent href="https://order.chipotle.com/*/*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
