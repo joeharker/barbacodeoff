@@ -6,7 +6,6 @@
 	c.takePhoto = takePhoto;
 	c.hasCamera = hasCamera;
 
-	//private functions
 	function onSuccess(imageData) {
 		c.lastPhoto = "data:image/jpeg;base64," + imageData;
 		if (c.callback !== undefined) {
@@ -20,7 +19,6 @@
 		}
 	}
 
-	//public functions
 	function takePhoto(callback) {
 		c.callback = callback;
 		if (navigator.camera === undefined) {
