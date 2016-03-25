@@ -383,7 +383,7 @@
 		window.open = cordova.InAppBrowser.open;
 	}
 	window.onload = function () {
-		if (!camera.hasCamera()) {
+		if (camera.hasCamera()) {
 			document.getElementById('cards').classList.remove('hide');
 		}
 	};
