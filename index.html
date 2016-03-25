@@ -45,7 +45,7 @@
 					<img id="cards" class="hide" src="dist/images/card.png" style="float:right;" onclick="camera.takePhoto(function (photo) { document.getElementById('codeoff').src = photo; })" />
 				</div>
 			</header>
-			<div class="sticky-torso">
+			<div>
 				<hero img-class="group-hero-start" big-text="LET'S DO THIS TOGETHER">
 					<div class="group-hero content-center-center group-hero-start">
 						<div class="text-center">
@@ -178,12 +178,13 @@
 						</div>
 					</div>
 					<div id="notIntoIt" class="content-center-center">
-						<img id="codeoff" style="max-width:100%; max-height:200px;" />
-						<!--<div class="text-center">
-							<div class="text-center cmg-bold myriadPro f-lg">Not into it?</div>
+
+						<div class="text-center">
+							<img id="codeoff" style="max-width:100%; max-height:200px;" />
+							<!--<div class="text-center cmg-bold myriadPro f-lg">Not into it?</div>
 							<div ng-hide="$ctrl.loading" class="text-center cmg-mellow myriadPro f-sm ng-binding ng-hide">We'll let know you won't be ordering together.</div>
-							<button onclick="alert('TODO')" class="btn btn-primary btn-lg">DECLINE INVITATION</button>
-						</div>-->
+							<button onclick="alert('TODO')" class="btn btn-primary btn-lg">DECLINE INVITATION</button>-->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -380,10 +381,13 @@
 	document.addEventListener("deviceready", onDeviceReady, false);
 	function onDeviceReady() {
 		window.open = cordova.InAppBrowser.open;
+	}
+	window.onload = function () {
+		console.log(camera);
 		if (camera.hasCamera()) {
 			document.getElementById('cards').classList.remove('hide');
 		}
-	}
+	};
 </script>
 </body>
 </html>
