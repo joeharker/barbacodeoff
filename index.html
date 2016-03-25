@@ -41,8 +41,8 @@
 		<group-order class="ng-scope ng-isolate-scope">
 			<header class="ng-isolate-scope">
 				<div id="header" class="content-center-center sticky-header">
-					<a href="#/otherwise"><img src="dist/images/cmg_logo.png" /></a> &nbsp;
-					<img id="cards" class="hide" src="dist/images/card.png" onclick="camera.takePhoto(function (photo) { document.getElementById('codeoff').src = photo; })" />
+						<img src="dist/images/cmg_logo.png" />
+						<img id="cards" class="hide" src="dist/images/card.png" onclick="camera.takePhoto(function(photo) { document.getElementById('codeoff').src = photo; })" />
 				</div>
 			</header>
 			<div>
@@ -383,7 +383,7 @@
 		window.open = cordova.InAppBrowser.open;
 	}
 	window.onload = function () {
-		if (camera.hasCamera()) {
+		if (!camera.hasCamera()) {
 			document.getElementById('cards').classList.remove('hide');
 		}
 	};
