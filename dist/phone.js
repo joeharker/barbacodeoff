@@ -40,11 +40,3 @@
 
 	return c;
 })();
-
-
-//in app browser init
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-	console.log(cordova);
-	window.open = cordova.InAppBrowser.open;
-}

@@ -376,8 +376,13 @@
 	}
 </style>
 <script>
-	if (camera.hasCamera()) {
-		document.getElementById('cards').classList.remove('hide');
+	//in app browser init
+	document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() {
+		window.open = cordova.InAppBrowser.open;
+		if (camera.hasCamera()) {
+			document.getElementById('cards').classList.remove('hide');
+		}
 	}
 </script>
 </body>
