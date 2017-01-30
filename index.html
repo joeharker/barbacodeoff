@@ -35,27 +35,38 @@
 			cel.appendChild(spn);
 		}
 
+		function addRow(obj, key, table, maxRecursions) {
+			var value = obj[key];
+			var thatType = Object.prototype.toString.call(value); //more detail than typeof
+			var row = table.insertRow();
+
+			addCell(row, thatType, 'type');
+			addCell(row, key, 'name');
+
+			if (maxRecursions > 0 && typeof value === 'object' && value != null
+				&& key !== 'enabledPlugin'	//this is a recursive link to the plug in that lists its self
+			) {
+				var cel = row.insertCell();
+				cel.innerHTML = objectToTable(value, --maxRecursions).outerHTML;
+			} else {
+				addCell(row, value, 'value');
+			}
+		}
+
 		function objectToTable(obj, maxRecursions) {
 			var table = document.createElement('table');
+			var hadNames = false;
 			if (maxRecursions === undefined) {
 				maxRecursions = 20;
 			}
 
-			for (var key in obj) {	// jshint ignore:line						//(do not use hasOwnProperty or you will loose many of the child objects)
-				var value = obj[key];
-				var thatType = Object.prototype.toString.call(value);			//more detail than typeof
-				var row = table.insertRow();
-
-				addCell(row, thatType, 'type');
-				addCell(row, key, 'name');
-
-				if (maxRecursions > 0 && typeof value === 'object' && value != null
-						&& key !== 'enabledPlugin'								//this is a recursive link to the plug in that lists its self
-				) {
-					var cel = row.insertCell();
-					cel.innerHTML = objectToTable(value, --maxRecursions).outerHTML;
-				} else {
-					addCell(row, value, 'value');
+			Object.getOwnPropertyNames(obj).forEach(function (key) {	//some objects break down like this
+				hadNames = true;
+				addRow(obj, key, table, maxRecursions);
+			});
+			if (!hadNames) {
+				for (var key in obj) {									//and some objects break down like this
+					addRow(obj, key, table, maxRecursions);
 				}
 			}
 
@@ -69,6 +80,9 @@
 
 		function onBodyLoad() {
 			try {
+				if (typeof cordova !== 'undefined') {
+					window = cordova.InAppBrowser;
+				}
 				window.open('https://order.chipotle.com/', '_blank', 'location=no');
 				log(['onBodyLoad success']);
 			} catch (e) {
