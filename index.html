@@ -78,8 +78,8 @@
 
 		function onBodyLoad() {
 			try {
-				log(['test']);
-				document.addEventListener('deviceready', onDeviceReady, false);
+				//document.addEventListener('deviceready', onDeviceReady, false);
+				window.location.href = 'https://order.chipotle.com/';
 				log(['onBodyLoad success']);
 			} catch (e) {
 				log(['onBodyLoad error', e]);
