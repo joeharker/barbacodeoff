@@ -78,10 +78,10 @@
 			debug.appendChild(objectToTable(obj));
 		}
 
-		function onBodyLoad() {
+		function onDeviceReady() {
 			try {
 				if (typeof cordova !== 'undefined') {
-					cordova.InAppBrowser.open('https://order.chipotle.com/', '_blank', 'location=no');
+					cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no');
 				}
 				log(['onBodyLoad success']);
 			} catch (e) {
@@ -89,7 +89,7 @@
 			}
 		}
 
-		document.addEventListener('DOMContentLoaded', onBodyLoad, false);
+		document.addEventListener("deviceready", onDeviceReady, false);
 	</script>
 </head>
 <body>
