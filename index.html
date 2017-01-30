@@ -67,19 +67,9 @@
 			debug.appendChild(objectToTable(obj));
 		}
 
-		function onDeviceReady() {
-			try {
-				window.location.href = 'https://order.chipotle.com/';
-				log(['onDeviceReady success']);
-			} catch (e) {
-				log(['onDeviceReady error', e]);
-			}
-		}
-
 		function onBodyLoad() {
 			try {
-				//document.addEventListener('deviceready', onDeviceReady, false);
-				window.location.href = 'https://order.chipotle.com/';
+				window.open('https://order.chipotle.com/', '_self', 'location=no');
 				log(['onBodyLoad success']);
 			} catch (e) {
 				log(['onBodyLoad error', e]);
