@@ -81,9 +81,8 @@
 		function onBodyLoad() {
 			try {
 				if (typeof cordova !== 'undefined') {
-					window = cordova.InAppBrowser;
+					cordova.InAppBrowser.open('https://order.chipotle.com/', '_blank', 'location=no');
 				}
-				window.open('https://order.chipotle.com/', '_blank', 'location=no');
 				log(['onBodyLoad success']);
 			} catch (e) {
 				log(['onBodyLoad error', e]);
