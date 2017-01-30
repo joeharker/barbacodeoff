@@ -2,7 +2,7 @@
   <name>CodeOff</name>
   <description>Web iOS and Android all in one</description>
   <author href="http://007dev.com" email="joeharker@007dev.com">Joe Harker</author>
-  <content src="https://order.chipotle.com/"/>
+  <content src="index.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
   <preference name="target-device" value="universal"/>

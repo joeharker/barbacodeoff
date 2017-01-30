@@ -5,8 +5,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="favicon.ico?">
+	<script type="text/javascript">
+     function onBodyLoad(){
+        document.addEventListener("deviceready", onDeviceReady, false);
+     }
+     function onDeviceReady() {
+     	window.location.href = 'https://order.chipotle.com/';
+     }
+	</script>
 </head>
 <body>
-	Should not be seen
+	Loading...
 </body>
 </html>
