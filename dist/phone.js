@@ -1,4 +1,6 @@
 ﻿var camera = (function () {
+	"use strict";
+
 	var c = {};
 	c.transparent = "data:image/gif;base64,R0lGODlhAQABALMAALu7uwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAwQCEEQAOw==";
 	c.lastPhoto = "" + c.transparent;

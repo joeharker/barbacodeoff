@@ -1,8 +1,8 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.Joe007dev.CodeOff" version="1.0.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.Joe007dev.CodeOff" version="1.1.0">
   <name>CodeOff</name>
   <description>Web iOS and Android all in one</description>
   <author href="http://007dev.com" email="joeharker@007dev.com">Joe Harker</author>
-  <content src="index.html"/>
+  <content src="https://order.chipotle.com/"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
   <preference name="target-device" value="universal"/>
@@ -20,36 +20,26 @@
   <preference name="android-installLocation" value="auto"/>
   
   <!--
-  <gap:plugin name="org.apache.cordova.battery-status"/>
-  <gap:plugin name="org.apache.cordova.camera"/>
-  <gap:plugin name="org.apache.cordova.media-capture"/>
-  <gap:plugin name="org.apache.cordova.console"/>
-  <gap:plugin name="org.apache.cordova.contacts"/>
-  <gap:plugin name="org.apache.cordova.device"/>
-  <gap:plugin name="org.apache.cordova.device-motion"/>
-  <gap:plugin name="org.apache.cordova.device-orientation"/>
-  <gap:plugin name="org.apache.cordova.dialogs"/>
-  <gap:plugin name="org.apache.cordova.file"/>
-  <gap:plugin name="org.apache.cordova.file-transfer"/>
-  <gap:plugin name="org.apache.cordova.geolocation"/>
-  <gap:plugin name="org.apache.cordova.globalization"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser"/>
-  <gap:plugin name="org.apache.cordova.media"/>
-  <gap:plugin name="org.apache.cordova.network-information"/>
-  <gap:plugin name="org.apache.cordova.splashscreen"/>
-  <gap:plugin name="org.apache.cordova.vibration"/>
+		<plugin name="cordova-plugin-battery-status" />
+    <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-media-capture" />
+    <plugin name="cordova-plugin-console" />
+    <plugin name="cordova-plugin-contacts" />
+    <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-device-motion" />
+    <plugin name="cordova-plugin-device-orientation" />
+    <plugin name="cordova-plugin-dialogs" />
+    <plugin name="cordova-plugin-file" />
+    <plugin name="cordova-plugin-file-transfer" />
+    <plugin name="cordova-plugin-geolocation" />
+    <plugin name="cordova-plugin-globalization" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-media" />
+    <plugin name="cordova-plugin-network-information" />
+    <plugin name="cordova-plugin-splashscreen" />
+    <plugin name="cordova-plugin-vibration" />
   -->
-
-	<feature name="InAppBrowser">
-		<param name="android-package" value="org.apache.cordova.InAppBrowser"/>
-	</feature>
-	<feature name="InAppBrowser">
-		<param name="ios-package" value="CDVInAppBrowser" />
-	</feature>
-	
-	<gap:plugin name="org.apache.cordova.camera" />
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" />  <!--open in default browser-->
-  <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" />  <!--splashscreen-->
+	<plugin name="cordova-plugin-inappbrowser" />
 
   <icon src="icon.png"/>
   <icon src="res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
