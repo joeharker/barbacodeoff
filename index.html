@@ -23,6 +23,7 @@
 			color: red;
 		}
 	</style>
+	<script src="cordova.js"></script>
 	<script type="text/javascript">
 		function addCell(row, text, clas) {
 			var cel = row.insertCell();
@@ -80,12 +81,13 @@
 
 		function onDeviceReady() {
 			try {
+				log(['onDeviceReady start']);
 				if (typeof cordova !== 'undefined') {
 					cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no');
 				}
-				log(['onBodyLoad success']);
+				log(['onDeviceReady success']);
 			} catch (e) {
-				log(['onBodyLoad error', e]);
+				log(['onDeviceReady error', e]);
 			}
 		}
 
