@@ -5,16 +5,92 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="favicon.ico?">
+	<style>
+		td {
+			border: 1px solid silver;
+			vertical-align: top;
+		}
+
+		.name {
+			color: black;
+		}
+
+		.type {
+			color: blue;
+		}
+
+		.value {
+			color: red;
+		}
+	</style>
 	<script type="text/javascript">
-     function onBodyLoad(){
-        document.addEventListener("deviceready", onDeviceReady, false);
-     }
-     function onDeviceReady() {
-     	window.location.href = 'https://order.chipotle.com/';
-     }
+		function addCell(row, text, clas) {
+			var cel = row.insertCell();
+			var spn = document.createElement('span');
+			var txt = document.createTextNode(text);
+			if (clas !== undefined && clas !== null && clas !== '') {
+				spn.classList.add(clas);
+			}
+			spn.appendChild(txt);
+			cel.appendChild(spn);
+		}
+
+		function objectToTable(obj, maxRecursions) {
+			var table = document.createElement('table');
+			if (maxRecursions === undefined) {
+				maxRecursions = 20;
+			}
+
+			for (var key in obj) {	// jshint ignore:line						//(do not use hasOwnProperty or you will loose many of the child objects)
+				var value = obj[key];
+				var thatType = Object.prototype.toString.call(value);			//more detail than typeof
+				var row = table.insertRow();
+
+				addCell(row, thatType, 'type');
+				addCell(row, key, 'name');
+
+				if (maxRecursions > 0 && typeof value === 'object' && value != null
+						&& key !== 'enabledPlugin'								//this is a recursive link to the plug in that lists its self
+				) {
+					var cel = row.insertCell();
+					cel.innerHTML = objectToTable(value, --maxRecursions).outerHTML;
+				} else {
+					addCell(row, value, 'value');
+				}
+			}
+
+			return table;
+		}
+
+		function log(obj) {
+			var debug = document.getElementById('debug');
+			debug.appendChild(objectToTable(obj));
+		}
+
+		function onDeviceReady() {
+			try {
+				window.location.href = 'https://order.chipotle.com/';
+				log(['onDeviceReady success']);
+			} catch (e) {
+				log(['onDeviceReady error', e]);
+			}
+		}
+
+		function onBodyLoad() {
+			try {
+				log(['test']);
+				document.addEventListener('deviceready', onDeviceReady, false);
+				log(['onBodyLoad success']);
+			} catch (e) {
+				log(['onBodyLoad error', e]);
+			}
+		}
+
+		document.addEventListener('DOMContentLoaded', onBodyLoad, false);
 	</script>
 </head>
 <body>
 	Loading...
+	<div id="debug"></div>
 </body>
 </html>
