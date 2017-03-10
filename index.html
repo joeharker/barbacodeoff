@@ -1,1 +1,35 @@
-﻿<a href="http://www.007dev.com/Default.aspx?content=aboutYou">http://www.007dev.com/Default.aspx?content=aboutYou</a>
+﻿<style>
+	#debug {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		background-color: white;
+		z-index: 999;
+	}
+
+		#debug td {
+			border: 1px solid silver;
+			vertical-align: top;
+		}
+
+		#debug .name {
+			color: black;
+		}
+
+		#debug .type {
+			color: blue;
+		}
+
+		#debug .value {
+			color: red;
+		}
+</style>
+<div id="debug">
+	<!-- can remove for prod -->
+	<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
+	<script>document.getElementById('debug').style.display = 'none';</script>
+</div>
+<script src="errorService.js"></script>
+<script>
+	errorService.log([location]);
+</script>
