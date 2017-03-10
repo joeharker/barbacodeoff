@@ -1,0 +1,16 @@
+﻿#debug {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	background-color: white;
+	z-index: 999;
+}
+
+#debug td {
+	border: 1px solid silver;
+	vertical-align: top; 
+}
+
+#debug .name { color: black; }
+#debug .type { color: blue; }
+#debug .value { color: red; }

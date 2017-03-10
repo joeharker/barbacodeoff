@@ -1,35 +1,39 @@
-﻿<style>
-	#debug {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		background-color: white;
-		z-index: 999;
-	}
+﻿<html ng-app="app" class="ng-scope">
+<head ng-controller="headController as headCtrl" class="ng-scope">
+	<title>Chipotle</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="favicon.ico?">
+	<link href="debug.css" rel="stylesheet" />
+	<script src="errorService.js"></script>
+	<script src="cordova.js"></script>
+	<script type="text/javascript">
+		var inAppBrowserRef;
 
-		#debug td {
-			border: 1px solid silver;
-			vertical-align: top;
+		function loadStopCallBack() {
+			if (inAppBrowserRef != undefined) {
+				inAppBrowserRef.show();
+			}
 		}
 
-		#debug .name {
-			color: black;
+		function onDeviceReady() {
+			if (typeof cordova !== 'undefined') {
+				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+				inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+			}
 		}
 
-		#debug .type {
-			color: blue;
-		}
-
-		#debug .value {
-			color: red;
-		}
-</style>
-<div id="debug">
-	<!-- can remove for prod -->
-	<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
-	<script>document.getElementById('debug').style.display = 'none';</script>
-</div>
-<script src="errorService.js"></script>
-<script>
-	errorService.log([location]);
-</script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+	</script>
+</head>
+<body>
+	<div id="debug">
+		<!-- can remove for prod -->
+		<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
+		<script>document.getElementById('debug').style.display = 'none';</script>
+	</div>
+	<img src="images/logo.png" style="width: 100%" />
+	<div id="debug"></div>
+</body>
+</html>
