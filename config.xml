@@ -70,7 +70,7 @@
   <gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
   <gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
   <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
-  <access origin="https://order.chipotle.com/Meal/Index/73"/>
+  <access origin="index.html"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>
 	<allow-intent href="https://*.chipotle.com"/>
   <allow-intent href="http://*/*"/>

@@ -1,101 +1,144 @@
-﻿<html ng-app="app" class="ng-scope">
-<head ng-controller="headController as headCtrl" class="ng-scope">
-	<title>Chipotle</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+﻿<!DOCTYPE html>
+<html ng-app="app" lang="en-us">
+<head ng-controller="HeadController as headCtrl">
+	<title>Chipotle - Online Ordering</title>
+	<base href="/">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Language" content="en">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=320, initial-scale=1, user-scalable=no, maximum-scale=1">
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Thu, 23 Jun 2016 17:30:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="og:image" content="https://d5bzqyuki558t.cloudfront.net/cms-assets/system/asset_versions/attachments/000/000/455/original/social_share_home.jpg?1429200830">
+	<meta name="description" content="Chipotle Mexican Grill, USA, Canada, France and UK, Burritos, Tacos and more. Food With Integrity.">
+	<meta name="keywords" content="burritos, mexican, grill, tacos, barbacoa, Pork, unprocessed, sustainable, responsible, chicken, carnitas, nutrition, steak, restaurant, pepper, salsa, organic, Denver, guacamole, Food With Integrity, fast casual, quick service, unprocessed food, artisanal, menu, food, responsibly raised, cultivate, barbacoa, burritos, mexican, grill, food, dining, carnitas, jalapeno, restaurant, Denver, fast food, steak, beef, chicken, rice, vegetables, salsa, nacho, pepper, guacamole, cilantro, tortilla, fresh mex, quick service, Food With Integrity, unprocessed food, seasonal food, family-farmed food, sustainable food, nutritious food, naturally raised food, added hormone free food, organic food, artisanal, Pork">
+	<meta name="twitter:site" content="@chipotletweets">
+	<meta name="twitter:title" content="Chipotle Mexican Grill">
+	<meta name="twitter:image" content="https://pbs.twimg.com/profile_images/616043541815386112/i7FxHNpE_400x400.jpg">
+	<meta name="twitter:image:height" content="400">
+	<meta name="twitter:image:width" content="400">
+	<meta name="twitter:description" content="Chipotle Mexican Grill">
+	<meta name="twitter:creator" content="@chipotletweets">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Chipotle Mexican Grill">
+	<meta property="og:url" content="https://facebook.com/chipotle">
+	<meta property="og:image" content="https://scontent.xx.fbcdn.net/v/t1.0-1/p160x160/11412133_10153405435544253_2560968782751517784_n.jpg?oh=b3065227350dfb514a2c25f357be22d2&oe=58989E58">
+	<meta property="og:image:height" content="160">
+	<meta property="og:image:width" content="160">
+	<meta property="og:site_name" content="Chipotle Mexican Grill">
+	<meta property="og:description" content="Chipotle Mexican Grill">
 	<link rel="shortcut icon" href="favicon.ico?">
-	<style>
-		td {
-			border: 1px solid silver;
-			vertical-align: top;
-		}
+	<link type="text/css" href="app-0df8b20631.css" rel="stylesheet" />
+    <script src="config-8625ed9bf2.js"></script>
 
-		.name {
-			color: black;
-		}
-
-		.type {
-			color: blue;
-		}
-
-		.value {
-			color: red;
-		}
-	</style>
-	<script src="cordova.js"></script>
+	<!-- BEGIN TRACKJS -->
+	<script src="https://maps.googleapis.com/maps/api/js?client=gme-chipotle"></script>
 	<script type="text/javascript">
-		function addCell(row, text, clas) {
-			var cel = row.insertCell();
-			var spn = document.createElement('span');
-			var txt = document.createTextNode(text);
-			if (clas !== undefined && clas !== null && clas !== '') {
-				spn.classList.add(clas);
-			}
-			spn.appendChild(txt);
-			cel.appendChild(spn);
-		}
+		window._trackJs = {
+			token: '8f6744a50bbd43fe8e20564e7c682048',
+			application: appConfig.environment,
+			enabled: !(window.location.host.indexOf('localhost') >= 0),
+			onError: function (payload, error) {
+				var skipMessages = [
+					'500 Internal Server Error: GET .*api/grouporder/getinviteeinfo/[-a-z0-9]+',	//expired invitee requests
+					'500 Internal Server Error: GET .*api/customer/passwordresetinfo/[-a-z0-9]+',	//expired password reset requests
+					'500 Internal Server Error: POST .*api/customer/resetpassword',					//weak password attempts
+					'500 Internal Server Error: POST .*api/customer/login',							//bad login attempts
+					'500 Internal Server Error: POST .*api/restaurant/restaurantssearch',			//bad restaurant searches
+					'500 Internal Server Error: POST .*api/customer/register',						//session timouts
+					'403 Forbidden: POST .*api/customer/register',									//session timouts
+					'401 Unauthorized: GET .*api/customer/get',										//session timouts
+					'__gCrWeb.autofill.extractForms',												//a password plugin, not our bug
+					'Can.t find variable: touchDownX',												//safari plugin, not our bug
+					'Node.prototype',																//unsupported IE8 and older
+					'not supported'																	//other unsupported browsers
+				];
 
-		function addRow(obj, key, table, maxRecursions) {
-			var value = obj[key];
-			var thatType = Object.prototype.toString.call(value); //more detail than typeof
-			var row = table.insertRow();
-
-			addCell(row, thatType, 'type');
-			addCell(row, key, 'name');
-
-			if (maxRecursions > 0 && typeof value === 'object' && value != null
-				&& key !== 'enabledPlugin'	//this is a recursive link to the plug in that lists its self
-			) {
-				var cel = row.insertCell();
-				cel.innerHTML = objectToTable(value, --maxRecursions).outerHTML;
-			} else {
-				addCell(row, value, 'value');
-			}
-		}
-
-		function objectToTable(obj, maxRecursions) {
-			var table = document.createElement('table');
-			var hadNames = false;
-			if (maxRecursions === undefined) {
-				maxRecursions = 20;
-			}
-
-			Object.getOwnPropertyNames(obj).forEach(function (key) {	//some objects break down like this
-				hadNames = true;
-				addRow(obj, key, table, maxRecursions);
-			});
-			if (!hadNames) {
-				for (var key in obj) {									//and some objects break down like this
-					addRow(obj, key, table, maxRecursions);
+				for (var s = 0; s < skipMessages.length; s++) {
+					var pattern = new RegExp(skipMessages[s], 'i');
+					if (pattern.test(payload.message)) {
+						return false;
+					}
 				}
+
+				return true;
 			}
-
-			return table;
-		}
-
-		function log(obj) {
-			var debug = document.getElementById('debug');
-			debug.appendChild(objectToTable(obj));
-		}
-
-		function onDeviceReady() {
-			try {
-				log(['onDeviceReady start']);
-				if (typeof cordova !== 'undefined') {
-					cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no');
-				}
-				log(['onDeviceReady success']);
-			} catch (e) {
-				log(['onDeviceReady error', e]);
-			}
-		}
-
-		document.addEventListener("deviceready", onDeviceReady, false);
+		};
 	</script>
+	<script type="text/javascript" src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
+	<!-- END TRACKJS -->
+    <script type="text/javascript" src="app-0b0689c731.js"></script>
+	<script type="text/javascript" src="templates-8ffff588b4.js"></script>
 </head>
 <body>
-	<img src="images/logo.png" style="width: 100%" />
-	<div id="debug"></div>
+	<!-- Google Tag Manager -->
+	<noscript>
+		<iframe src="//www.googletagmanager.com/ns.html?id=GTM-TN4SHQ"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<script>
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+				'//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-TN4SHQ');
+
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<div ui-view>
+		<noscript>
+			<h1>Chipotle: Online Ordering - It's Easy and Convenient.</h1>
+			<p>
+				Ordering your favorite burrito, bowl, salad, or tacos is as simple as can be.
+			</p>
+
+			<h1>How do I order Chipotle online?</h1>
+			<p>
+				<a title="order chipotle" href="https://order.chipotle.com/">order.chipotle.com</a>
+				<ul>
+					<li>Order your food quickly from your web browser. No waiting in line.</li>
+					<li>Pay with a credit card or Chipotle gift card.</li>
+					<li>Find the nearest Chipotle. Or the furthest. Find all Chipotle locations, even those that are Coming Soon.</li>
+					<li>Use your Chipotle account to access all your favorite and recent orders, and save your payment info.</li>
+				</ul>
+				Make sure your browser accepts all cookies in all situations.
+				Enable javascript in your browser preferences.
+				If you are trying to get a new password, check your spam folder.
+				Burritos are not spam, but some e-mail systems don't have any taste.
+				If you're still having trouble, contact us on the Email Us section of our website and we'll help you out.
+			</p>
+
+			<h1>Can I order Chipotle from an iPhone?</h1>
+			<p>
+				<a title="itunes" href="https://itunes.apple.com/us/app/chipotle/id327228455?mt=8">itunes</a>
+				<ul>
+					<li>Order your food quickly from your iPhone, iPod Touch, or Apple Watch. No waiting in line.</li>
+					<li>Pay with a credit card or Chipotle gift card.</li>
+					<li>Find the nearest Chipotle. Or the furthest. Find all Chipotle locations, even those that are Coming Soon.</li>
+					<li>Use your Chipotle account to access all your favorite and recent orders, and save your payment info.</li>
+					<li>See menu, nutrition, and allergy information.</li>
+				</ul>
+			</p>
+
+			<h1>Can I order Chipotle from an Android phone?</h1>
+			<p>
+				<a title="google play" href="https://play.google.com/store/apps/details?id=com.chipotle.ordering&hl=en">google play</a>
+				<ul>
+					<li>Order your food quickly from your Android phone. No waiting in line.</li>
+					<li>Pay with a credit card or Chipotle gift card.</li>
+					<li>Find the nearest Chipotle. Or the furthest. Find all Chipotle locations, even those that are Coming Soon.</li>
+					<li>Use your Chipotle account to access all your favorite and recent orders, and save your payment info.</li>
+					<li>See menu, nutrition, and allergy information.</li>
+				</ul>
+			</p>
+		</noscript>
+	</div>
 </body>
 </html>

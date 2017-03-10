@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-Frame-Options" value="DENY"/>
+        <add name="Vary" value="Accept-Encoding"/>
+      </customHeaders>
+    </httpProtocol>
+    <handlers>
+      <add name="Browser Link for HTML" path="*.html" verb="*" type="System.Web.StaticFileHandler, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" resourceType="File" preCondition="integratedMode"/>
+    </handlers>
+    <rewrite>
+      <rules>
+        <rule name="Olo Redirects">
+          <match url=".*"/>
+          <conditions>
+            <add input="{REQUEST_URI}" pattern="catering" ignoreCase="true"/>
+          </conditions>
+          <action type="Redirect" redirectType="Found" url="https://chipotle.olo.com/"/>
+        </rule>
+        <rule name="Old Uri Redirect">
+          <match url=".*"/>
+          <conditions>
+            <add input="{HTTP_HOST}" pattern="(.*)online-(.*)" ignoreCase="true"/>
+          </conditions>
+          <action type="Redirect" url="https://{C:1}{C:2}{REQUEST_URI}" appendQueryString="false" redirectType="Found"/>
+        </rule>
+        <rule name="AngularJS Routes" stopProcessing="true">
+          <match url=".*"/>
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/>
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true"/>
+            <add input="{REQUEST_URI}" pattern="^/(api)" negate="true"/>
+          </conditions>
+          <action type="Rewrite" url="/"/>
+        </rule>
+        <rule name="HTTP to HTTPS redirect">
+          <match url=".*"/>
+          <conditions>
+            <add input="{HTTPS}" pattern="off" ignoreCase="true"/>
+          </conditions>
+          <action type="Redirect" redirectType="Found" url="https://{HTTP_HOST}{REQUEST_URI}"/>
+        </rule>
+      </rules>
+    </rewrite>
+    <staticContent>
+      <remove fileExtension=".map"/>
+      <mimeMap fileExtension=".map" mimeType="text/plain"/>
+      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="30.00:00:00"/>
+    </staticContent>
+    <urlCompression doStaticCompression="true"/>
+    <httpCompression>
+      <staticTypes>
+        <add enabled="true" mimeType="text/*"/>
+        <add enabled="true" mimeType="application/javascript"/>
+        <add enabled="true" mimeType="image/svg+xml"/>
+        <add enabled="false" mimeType="*/*"/>
+      </staticTypes>
+    </httpCompression>
+  </system.webServer>
+  <system.web>
+    <compilation targetFramework="4.5" debug="true"/>
+  </system.web>
+</configuration>
+<!--ProjectGuid: {79436B2A-124A-4415-A3EC-4E6BA8A37A8C}-->
