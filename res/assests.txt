@@ -1,0 +1,108 @@
+Folder PATH listing
+Volume serial number is 00000029 40A8:9411
+C:.
+|   .gitignore
+|   app.css.map
+|   app.js.map
+|   assests.txt
+|   config.xml
+|   cordova.js
+|   debug.css
+|   default.htm.RenameForOffLine
+|   errorService.js
+|   favicon.ico
+|   Hackathon.sln
+|   icon.png
+|   index.html
+|   robots.txt
+|   
++---.vs
+|   +---config
+|   |       applicationhost.config
+|   |       
+|   \---Hackathon
+|       +---v14
+|       \---v15
+\---res
+    |   logo.svg
+    |   
+    +---icon
+    |   +---android
+    |   |       icon-36-ldpi.png
+    |   |       icon-48-mdpi.png
+    |   |       icon-72-hdpi.png
+    |   |       icon-96-xhdpi.png
+    |   |       
+    |   +---bada
+    |   |       icon-128.png
+    |   |       
+    |   +---bada-wac
+    |   |       icon-48-type5.png
+    |   |       icon-50-type3.png
+    |   |       icon-80-type4.png
+    |   |       
+    |   +---blackberry
+    |   |       icon-80.png
+    |   |       
+    |   +---ios
+    |   |       icon-120.png
+    |   |       icon-152.png
+    |   |       icon-57-2x.png
+    |   |       icon-57.png
+    |   |       icon-72-2x.png
+    |   |       icon-72.png
+    |   |       icon-76.png
+    |   |       
+    |   +---tizen
+    |   |       icon-128.png
+    |   |       
+    |   +---webos
+    |   |       icon-64.png
+    |   |       
+    |   \---windows-phone
+    |           icon-173-tile.png
+    |           icon-48.png
+    |           icon-62-tile.png
+    |           
+    \---screen
+        +---android
+        |       screen-hdpi-landscape.png
+        |       screen-hdpi-portrait.png
+        |       screen-ldpi-landscape.png
+        |       screen-ldpi-portrait.png
+        |       screen-mdpi-landscape.png
+        |       screen-mdpi-portrait.png
+        |       screen-xhdpi-landscape.png
+        |       screen-xhdpi-portrait.png
+        |       
+        +---bada
+        |       screen-portrait.png
+        |       
+        +---bada-wac
+        |       screen-type3.png
+        |       screen-type4.png
+        |       screen-type5.png
+        |       
+        +---blackberry
+        |       screen-225.png
+        |       
+        +---ios
+        |       screen-ipad-landscape-2x.png
+        |       screen-ipad-landscape.png
+        |       screen-ipad-portrait-2x.png
+        |       screen-ipad-portrait.png
+        |       screen-iphone-landscape-2x.png
+        |       screen-iphone-landscape.png
+        |       screen-iphone-portrait-2x.png
+        |       screen-iphone-portrait-568h-2x.png
+        |       screen-iphone-portrait.png
+        |       
+        +---tizen
+        |       README.md
+        |       
+        +---webos
+        |       screen-64.png
+        |       
+        \---windows-phone
+                screen-portrait.jpg
+                

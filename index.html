@@ -24,7 +24,7 @@
 				//hide untill fully loaded
 				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 
-				//show now that the page is fully loaded
+				//show when the page is fully loaded
 				inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
 
 				//the user has hit back too many times, reload them
@@ -33,7 +33,7 @@
 		}
 
 		//cordova is ready
-		document.addEventListener("deviceready", onDeviceReady, false);
+		document.addEventListener('deviceready', onDeviceReady, false);
 	</script>
 </head>
 <body>

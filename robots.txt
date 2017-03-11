@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /error.htm
-Disallow: /order-declined
-Disallow: /order-inactive
