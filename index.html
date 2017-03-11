@@ -1,9 +1,11 @@
-﻿<html ng-app="app" class="ng-scope">
-<head ng-controller="headController as headCtrl" class="ng-scope">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
 	<title>Chipotle</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
 	<link rel="shortcut icon" href="favicon.ico?">
 	<link href="debug.css" rel="stylesheet" />
 	<script src="errorService.js"></script>
@@ -19,11 +21,18 @@
 
 		function onDeviceReady() {
 			if (typeof cordova !== 'undefined') {
+				//hide untill fully loaded
 				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+
+				//show now that the page is fully loaded
 				inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+				//the user has hit back too many times, reload them
+				inAppBrowserRef.addEventListener('exit', onDeviceReady);
 			}
 		}
 
+		//cordova is ready
 		document.addEventListener("deviceready", onDeviceReady, false);
 	</script>
 </head>
@@ -33,7 +42,6 @@
 		<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
 		<script>document.getElementById('debug').style.display = 'none';</script>
 	</div>
-	<img src="images/logo.png" style="width: 100%" />
-	<div id="debug"></div>
+	<img src="res/logo.svg" style="width: 100%" />
 </body>
 </html>
