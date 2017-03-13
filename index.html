@@ -50,12 +50,12 @@
 			}
 
 			function onInAppBrowserLoadStop() {
-				errorService.log(['onInAppBrowserLoadStop', inAppBrowserRef]);
+				errorService.log('onInAppBrowserLoadStop');
 				if (inAppBrowserRef != undefined) {
 					inAppBrowserRef.show();
 
 					//attempt cache of images
-					cordova.InAppBrowser.open('https://order.chipotle.com/', 'cacheme', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+					inAppBrowserRef.executeScript({ file: 'cache.js' });
 				}
 			}
 
