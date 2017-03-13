@@ -54,10 +54,10 @@
 					inAppBrowserRef.show();
 
 					//run custom scripts
-					inAppBrowserRef.executeScript({ file: 'custom.js' });
+					inAppBrowserRef.executeScript({ file: 'file:///android_asset/custom.js' });
 
 					//load custom styles
-					inAppBrowserRef.insertCSS({ file: "custom.css" });
+					inAppBrowserRef.insertCSS({ file: "file:///android_asset/custom.css" });
 				}
 			}
 
