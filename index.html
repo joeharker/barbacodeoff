@@ -37,7 +37,7 @@
 				inAppBrowserRef.addEventListener('exit', onDeviceReady);
 
 				//start caching images
-				cordova.InAppBrowser.open('cache.html', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+				cordova.InAppBrowser.open('cache.html', '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			}
 		}
 
