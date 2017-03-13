@@ -50,6 +50,7 @@
 			}
 
 			function onInAppBrowserLoadStop() {
+				errorService.log(['onInAppBrowserLoadStop', inAppBrowserRef]);
 				if (inAppBrowserRef != undefined) {
 					inAppBrowserRef.show();
 
