@@ -50,20 +50,20 @@
 			}
 
 			function onInAppBrowserLoadStop() {
-				errorService.log(['onInAppBrowserLoadStop', inAppBrowserRef]);
 				if (inAppBrowserRef != undefined) {
 					inAppBrowserRef.show();
+
+					//attempt cache of images
+					cordova.InAppBrowser.open('https://order.chipotle.com/', 'cacheme', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 				}
 			}
 
 			function onInAppBrowserExit() {
-				errorService.log('onInAppBrowserExit');
 				//if they exit too far lets get them back into the InAppBrowser
 				onDeviceReady();
 			}
 
 			function onDeviceReady() {
-				errorService.log(['onDeviceReady', cordova]);
 				if (typeof cordova !== 'undefined') {
 					inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 					inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
