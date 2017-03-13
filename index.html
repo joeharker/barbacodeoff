@@ -10,45 +10,24 @@
 	<link href="debug.css" rel="stylesheet" />
 	<style>
 		#logo {
-			max-width: 100vw;
+			max-width: 100%;
 			max-height: 100vh;
+		}
+		.flex-container {
+			height: 62vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.center-row {
+			width: 100%;
+		}
+		.center-item {
+			text-align: center;
 		}
 	</style>
 	<script src="errorService.js"></script>
 	<script src="cordova.js"></script>
-	<script type="text/javascript">
-		var inAppBrowserRef;
-
-		function loadStopCallBack() {
-			if (inAppBrowserRef != undefined) {
-				inAppBrowserRef.show();
-			}
-		}
-
-		function loadErrorCallBack(params) {
-			errorService.log(['InAppBrowser error', params]);
-		}
-
-
-		function onDeviceReady() {
-			if (typeof cordova !== 'undefined') {
-				//hide untill fully loaded
-				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
-
-				//show when the page is fully loaded
-				inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
-
-				//show any errors if debug is enabled
-				inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
-
-				//the user has hit back too many times, reload them
-				inAppBrowserRef.addEventListener('exit', onDeviceReady);
-			}
-		}
-
-		//cordova is ready
-		document.addEventListener('deviceready', onDeviceReady, false);
-	</script>
 </head>
 <body>
 	<div id="debug">
@@ -56,6 +35,46 @@
 		<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
 		<script>document.getElementById('debug').style.display = 'none';</script>
 	</div>
-	<img id="logo" src="res/logo.svg" />
+	<div class="flex-container">
+		<div class="center-row">
+			<div class="center-item">
+				<img id="logo" src="res/logo.svg" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			var inAppBrowserRef;
+
+			function onInAppBrowserLoadError(params) {
+				errorService.log(['InAppBrowser error', params]);
+			}
+
+			function onInAppBrowserLoadStop() {
+				errorService.log(['onInAppBrowserLoadStop', inAppBrowserRef]);
+				if (inAppBrowserRef != undefined) {
+					inAppBrowserRef.show();
+				}
+			}
+
+			function onInAppBrowserExit() {
+				errorService.log('onInAppBrowserExit');
+				//if they exit too far lets get them back into the InAppBrowser
+				onDeviceReady();
+			}
+
+			function onDeviceReady() {
+				errorService.log(['onDeviceReady', cordova]);
+				if (typeof cordova !== 'undefined') {
+					inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+					inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+					inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
+					inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
+				}
+			}
+
+			//cordova is ready
+			document.addEventListener('deviceready', onDeviceReady, false);
+			errorService.log('script running');
+	</script>
 </body>
 </html>
