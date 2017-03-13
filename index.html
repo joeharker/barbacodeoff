@@ -22,6 +22,9 @@
 		function loadStopCallBack() {
 			if (inAppBrowserRef != undefined) {
 				inAppBrowserRef.show();
+
+				//start caching images
+				cordova.InAppBrowser.open('cache.html', '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			}
 		}
 
@@ -35,9 +38,6 @@
 
 				//the user has hit back too many times, reload them
 				inAppBrowserRef.addEventListener('exit', onDeviceReady);
-
-				//start caching images
-				cordova.InAppBrowser.open('cache.html', '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			}
 		}
 
