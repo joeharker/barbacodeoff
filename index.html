@@ -22,11 +22,13 @@
 		function loadStopCallBack() {
 			if (inAppBrowserRef != undefined) {
 				inAppBrowserRef.show();
-
-				//start caching images
-				cordova.InAppBrowser.open('cache.html', '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			}
 		}
+
+		function loadErrorCallBack(params) {
+			errorService.log(['InAppBrowser error', params]);
+		}
+
 
 		function onDeviceReady() {
 			if (typeof cordova !== 'undefined') {
@@ -35,6 +37,9 @@
 
 				//show when the page is fully loaded
 				inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+				//show any errors if debug is enabled
+				inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
 
 				//the user has hit back too many times, reload them
 				inAppBrowserRef.addEventListener('exit', onDeviceReady);
