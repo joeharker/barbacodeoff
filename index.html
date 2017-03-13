@@ -49,13 +49,17 @@
 				errorService.log(['InAppBrowser error', params]);
 			}
 
+			function onCacheComplete(params) {
+				errorService.log(['onCacheComplete', params]);
+			}
+
 			function onInAppBrowserLoadStop() {
 				errorService.log('onInAppBrowserLoadStop');
 				if (inAppBrowserRef != undefined) {
 					inAppBrowserRef.show();
 
 					//attempt cache of images
-					inAppBrowserRef.executeScript({ file: 'cache.js' });
+					inAppBrowserRef.executeScript({ file: 'cache.js', onCacheComplete });
 				}
 			}
 
