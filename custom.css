@@ -1,5 +1,3 @@
 ﻿div {
 	background-color: red !important;
-	-webkit-filter: invert(100%) !important;
-	filter: invert(100%) !important;
 }
