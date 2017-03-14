@@ -83,6 +83,7 @@
 
 		function runCustomScripts() {
 			httpGet('custom.js', function (js) {
+				errorService.log(['js', js]);
 				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
 			});
 		}
