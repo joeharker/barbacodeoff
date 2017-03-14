@@ -1,3 +1,5 @@
 ﻿div {
 	background-color: red !important;
+	color: silver !important;
+	border: 1px solid blue;
 }
