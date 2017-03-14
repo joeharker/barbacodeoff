@@ -43,49 +43,57 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-			var inAppBrowserRef;
+		var inAppBrowserRef;
 
-			function onInAppBrowserLoadError(params) {
-				errorService.log(['InAppBrowser error', params]);
-			}
+		function onScriptCallback(params) {
+			errorService.log(['onScriptCallback', params]);
+		}
 
-			function onInAppBrowserLoadStop() {
-				if (inAppBrowserRef != undefined) {
-					inAppBrowserRef.removeEventListener('loadstop', onInAppBrowserLoadStop);
-					inAppBrowserRef.show();
+		function onCssCallback(params) {
+			errorService.log(['onCssCallback', params]);
+		}
 
-					//get root for running scripts
-					var root = '';
-					var regex = new RegExp('^(.*/)[^/]*$', 'gi');
-					var match = regex.exec(location.href);
-					if (match) {
-						//root = match[1];
-					}
+		function onInAppBrowserLoadError(params) {
+			errorService.log(['InAppBrowser error', params]);
+		}
 
-					//run custom scripts
-					inAppBrowserRef.executeScript({ file: root + 'custom.js' });
+		function onInAppBrowserLoadStop() {
+			if (inAppBrowserRef != undefined) {
+				inAppBrowserRef.removeEventListener('loadstop', onInAppBrowserLoadStop);
+				inAppBrowserRef.show();
 
-					//load custom styles
-					inAppBrowserRef.insertCSS({ file: root + 'custom.css' });
+				//get root for running scripts
+				var root = '';
+				var regex = new RegExp('^(.*/)[^/]*$', 'gi');
+				var match = regex.exec(location.href);
+				if (match) {
+					root = match[1];
 				}
-			}
 
-			function onInAppBrowserExit() {
-				//if they exit too far lets get them back into the InAppBrowser
-				onDeviceReady();
-			}
+				//run custom scripts
+				inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
 
-			function onDeviceReady() {
-				if (typeof cordova !== 'undefined') {
-					inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
-					inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
-					inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
-					inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
-				}
+				//load custom styles
+				inAppBrowserRef.insertCSS({ file: 'custom.css' }, onCssCallback);
 			}
+		}
 
-			//cordova is ready
-			document.addEventListener('deviceready', onDeviceReady, false);
+		function onInAppBrowserExit() {
+			//if they exit too far lets get them back into the InAppBrowser
+			onDeviceReady();
+		}
+
+		function onDeviceReady() {
+			if (typeof cordova !== 'undefined') {
+				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+				inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+				inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
+				inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
+			}
+		}
+
+		//cordova is ready
+		document.addEventListener('deviceready', onDeviceReady, false);
 	</script>
 </body>
 </html>
