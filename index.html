@@ -27,6 +27,7 @@
 		}
 	</style>
 	<script src="errorService.js"></script>
+	<script src="custom.js"></script>
 	<script src="cordova.js"></script>
 </head>
 <body>
@@ -66,14 +67,14 @@
 
 				//get root for running scripts
 				var root = '';
-				var regex = new RegExp('^(.*/)[^/]*$', 'gi');
-				var match = regex.exec(location.href);
-				if (match) {
-					root = match[1];
-				}
+				//var regex = new RegExp('^(.*/)[^/]*$', 'gi');
+				//var match = regex.exec(location.href);
+				//if (match) {
+				//	root = match[1];
+				//}
 
 				//run custom scripts
-				inAppBrowserRef.executeScript({ file: root + 'custom.js' }, onScriptCallback);
+				inAppBrowserRef.executeScript({ code: 'custom.cacheImages()' }, onScriptCallback);
 
 				//load custom styles
 				inAppBrowserRef.insertCSS({ file: root + 'custom.css' }, onCssCallback);
