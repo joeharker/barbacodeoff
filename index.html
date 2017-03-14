@@ -77,7 +77,7 @@
 				inAppBrowserRef.executeScript({ code: 'custom.cacheImages()' }, onScriptCallback);
 
 				//load custom styles
-				inAppBrowserRef.insertCSS({ file: root + 'custom.css' }, onCssCallback);
+				inAppBrowserRef.insertCSS({ code: 'div { background: red }' }, onCssCallback);
 
 				errorService.log(root);
 			} else {

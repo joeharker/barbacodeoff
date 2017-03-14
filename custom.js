@@ -249,5 +249,5 @@
 
 	return {
 		cacheImages: cacheImages
-	}
+	};
 })();
