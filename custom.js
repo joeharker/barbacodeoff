@@ -1,6 +1,8 @@
-﻿'use strict';
+﻿errorService.log('script running');
 
 (function (error) {
+	'use strict';
+
 	var images = [
 		'heros/bowl-hero-desktop.jpg',
 		'heros/bowl-hero-mobile-2x.jpg',
