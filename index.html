@@ -14,7 +14,7 @@
 			max-height: 100vh;
 		}
 		.flex-container {
-			height: 62vh;
+			height: 95vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -53,11 +53,18 @@
 				if (inAppBrowserRef != undefined) {
 					inAppBrowserRef.show();
 
+					var root = '';
+					var regex = new RegExp('^(.*/)[^/]*$', 'gi');
+					var match = regex.exec(url);
+					if (match) {
+						root = match[1];
+					}
+
 					//run custom scripts
-					inAppBrowserRef.executeScript({ file: 'file:///android_asset/custom.js' });
+					inAppBrowserRef.executeScript({ file: root + 'custom.js' });
 
 					//load custom styles
-					inAppBrowserRef.insertCSS({ file: "file:///android_asset/custom.css" });
+					inAppBrowserRef.insertCSS({ file: root + 'custom.css' });
 				}
 			}
 
@@ -77,7 +84,6 @@
 
 			//cordova is ready
 			document.addEventListener('deviceready', onDeviceReady, false);
-			errorService.log([location]);
 	</script>
 </body>
 </html>
