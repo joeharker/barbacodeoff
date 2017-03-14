@@ -83,10 +83,7 @@
 
 		function runCustomScripts() {
 			httpGet('custom.js', function (js) {
-				js = js.replace('\r', '');
-				js = js.replace('\n', ' ');
-				errorService.log(['js', js]);
-				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+				inAppBrowserRef.executeScript({ code: 'var img = document.querySelector(".header-icon"); img.src = "http://www.007dev.com/Images/icon.gif";' }, onScriptCallback);
 			});
 		}
 
