@@ -27,7 +27,6 @@
 		}
 	</style>
 	<script src="errorService.js"></script>
-	<script src="custom.js"></script>
 	<script src="cordova.js"></script>
 </head>
 <body>
@@ -58,6 +57,36 @@
 			errorService.log(['InAppBrowser error', params]);
 		}
 
+		function httpGet(url, callback) {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function () {
+				if (xmlHttp.readyState === 4) {
+					if (xmlHttp.status === 200) {
+						callback(xmlHttp.responseText);
+					} else {
+						errorService.log(['Error: httpGet not 200', xmlHttp]);
+					}
+				}
+			};
+			xmlHttp.onerror = function (e) {
+				errorService.log(['Error: httpGet', e]);
+			};
+			xmlHttp.open('GET', url, true); // true for asynchronous 
+			xmlHttp.send(null);
+		}
+
+		function loadCustomStyles() {
+			httpGet('custom.css', function (css) {
+				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
+			});
+		}
+
+		function runCustomScripts() {
+			httpGet('custom.js', function (js) {
+				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+			});
+		}
+
 		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
 			if (inAppBrowserRef != undefined && onInAppBrowserLoadStopFirstRun) {
@@ -65,20 +94,8 @@
 
 				inAppBrowserRef.show();
 
-				//get root for running scripts
-				var root = '';
-				//var regex = new RegExp('^(.*/)[^/]*$', 'gi');
-				//var match = regex.exec(location.href);
-				//if (match) {
-				//	root = match[1];
-				//}
-
-				//run custom scripts
-				inAppBrowserRef.executeScript({
-					code: 'var img=document.querySelector(".header-icon"); img.src="http://www.007dev.com/Images/icon.gif";' }, onScriptCallback);
-
-				//load custom styles
-				inAppBrowserRef.insertCSS({ code: 'div { background: red }' }, onCssCallback);
+				loadCustomStyles();
+				runCustomScripts();
 			} else {
 				//onInAppBrowserExit();
 			}
@@ -98,7 +115,7 @@
 			}
 		}
 
-		//cordova is ready
+		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
 	</script>
 </body>
