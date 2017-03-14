@@ -74,12 +74,11 @@
 				//}
 
 				//run custom scripts
-				inAppBrowserRef.executeScript({ code: 'custom.cacheImages()' }, onScriptCallback);
+				inAppBrowserRef.executeScript({
+					code: 'var img=document.querySelector(".header-icon"); img.src="http://www.007dev.com/Images/icon.gif";' }, onScriptCallback);
 
 				//load custom styles
 				inAppBrowserRef.insertCSS({ code: 'div { background: red }' }, onCssCallback);
-
-				errorService.log(root);
 			} else {
 				//onInAppBrowserExit();
 			}
