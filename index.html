@@ -51,13 +51,16 @@
 
 			function onInAppBrowserLoadStop() {
 				if (inAppBrowserRef != undefined) {
+					inAppBrowserRef.removeEventListener('loadstop', onInAppBrowserLoadStop);
 					inAppBrowserRef.show();
 
+					//get root for running scripts
 					var root = '';
 					var regex = new RegExp('^(.*/)[^/]*$', 'gi');
 					var match = regex.exec(location.href);
 					if (match) {
-						root = match[1];
+						//root = match[1];
+						errorService.log([match[1], match]);
 					}
 
 					//run custom scripts
