@@ -57,9 +57,12 @@
 			errorService.log(['InAppBrowser error', params]);
 		}
 
+		var onInAppBrowserLoadStopRan = false;
 		function onInAppBrowserLoadStop() {
-			if (inAppBrowserRef != undefined) {
+			if (inAppBrowserRef != undefined && !onInAppBrowserLoadStopRan) {
 				inAppBrowserRef.removeEventListener('loadstop', onInAppBrowserLoadStop);
+				onInAppBrowserLoadStopRan = true;
+
 				inAppBrowserRef.show();
 
 				//get root for running scripts
@@ -71,10 +74,12 @@
 				}
 
 				//run custom scripts
-				inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
+				inAppBrowserRef.executeScript({ file: 'phonegap.js' }, onScriptCallback);
 
 				//load custom styles
-				inAppBrowserRef.insertCSS({ file: 'custom.css' }, onCssCallback);
+				inAppBrowserRef.insertCSS({ file: 'phonegap.css' }, onCssCallback);
+
+				errorService.log(root + 'custom.js');
 			}
 		}
 
