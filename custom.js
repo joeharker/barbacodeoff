@@ -1,5 +1,5 @@
-﻿(function () {
-	'use strict';
+﻿//(function () {
+//	'use strict';
 
 	var images = [
 		'heros/bowl-hero-desktop.jpg',
@@ -242,4 +242,6 @@
 		img.style.cssFloat = 'left';
 		document.body.appendChild(img);
 	}
-})();
+
+	return 'images loaded';
+//})();

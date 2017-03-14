@@ -69,14 +69,14 @@
 				var regex = new RegExp('^(.*/)[^/]*$', 'gi');
 				var match = regex.exec(location.href);
 				if (match) {
-					root = match[1];
+					//root = match[1];
 				}
 
 				//run custom scripts
-				inAppBrowserRef.executeScript({ file: root + 'phonegap.js' }, onScriptCallback);
+				inAppBrowserRef.executeScript({ file: root + 'custom.js' }, onScriptCallback);
 
 				//load custom styles
-				inAppBrowserRef.insertCSS({ file: root + 'phonegap.css' }, onCssCallback);
+				inAppBrowserRef.insertCSS({ file: root + 'custom.css' }, onCssCallback);
 
 				errorService.log(root);
 			} else {
