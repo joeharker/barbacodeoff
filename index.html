@@ -84,7 +84,8 @@
 		function runCustomScripts() {
 			httpGet('custom.js', function (js) {
 				js = js.replace('\r', '');
-				js = js.replace('\n', '');
+				js = js.replace('\n', ' ');
+				errorService.log(['js', js]);
 				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
 			});
 		}
