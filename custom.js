@@ -234,11 +234,12 @@
 for (var i in images) {
 	var img = document.createElement('img');
 	img.src = 'https://order.chipotle.com/images/' + images[i];
-	img.width = 10;
-	img.height = 10;
+	img.width = 1;
+	img.height = 1;
 	img.style.cssFloat = 'left';
 	document.body.appendChild(img);
 }
 
+window._trackJs = { token: '8f6744a50bbd43fe8e20564e7c682048', application: 'Phonegap 1.0' };
 var img = document.querySelector('.header-icon'); 
 img.src = 'http://www.007dev.com/Images/icon.gif';
