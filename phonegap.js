@@ -247,3 +247,5 @@
 	error.log('images loaded');
 
 })(errorService);
+
+return 'this returned';

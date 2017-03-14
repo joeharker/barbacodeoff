@@ -57,11 +57,10 @@
 			errorService.log(['InAppBrowser error', params]);
 		}
 
-		var onInAppBrowserLoadStopRan = false;
+		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
-			if (inAppBrowserRef != undefined && !onInAppBrowserLoadStopRan) {
-				inAppBrowserRef.removeEventListener('loadstop', onInAppBrowserLoadStop);
-				onInAppBrowserLoadStopRan = true;
+			if (inAppBrowserRef != undefined && onInAppBrowserLoadStopFirstRun) {
+				onInAppBrowserLoadStopFirstRun = false;
 
 				inAppBrowserRef.show();
 
@@ -74,12 +73,14 @@
 				}
 
 				//run custom scripts
-				inAppBrowserRef.executeScript({ file: 'phonegap.js' }, onScriptCallback);
+				inAppBrowserRef.executeScript({ file: root + 'phonegap.js' }, onScriptCallback);
 
 				//load custom styles
-				inAppBrowserRef.insertCSS({ file: 'phonegap.css' }, onCssCallback);
+				inAppBrowserRef.insertCSS({ file: root + 'phonegap.css' }, onCssCallback);
 
-				errorService.log(root + 'custom.js');
+				errorService.log(root);
+			} else {
+				//onInAppBrowserExit();
 			}
 		}
 
