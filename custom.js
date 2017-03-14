@@ -240,6 +240,6 @@ for (var i in images) {
 	document.body.appendChild(img);
 }
 
-window._trackJs = { token: '8f6744a50bbd43fe8e20564e7c682048', application: 'Phonegap 1.0' };
+window._trackJs = { token: '8f6744a50bbd43fe8e20564e7c682048', application: 'roo-phonegap' };
 var img = document.querySelector('.header-icon'); 
 img.src = 'http://www.007dev.com/Images/icon.gif';
