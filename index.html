@@ -26,8 +26,13 @@
 			text-align: center;
 		}
 	</style>
+	<script src="config.js"></script>
 	<script src="errorService.js"></script>
-	<script>errorService.init();</script>
+	<script>
+		if (config.debug) {
+			errorService.init();
+		}
+	</script>
 	<script src="cordova.js"></script>
 </head>
 <body>
@@ -107,7 +112,7 @@
 
 		function onDeviceReady() {
 			if (typeof cordova !== 'undefined') {
-				inAppBrowserRef = cordova.InAppBrowser.open('https://order.chipotle.com/', '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+				inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 				inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 				inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 				inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);

@@ -78,7 +78,7 @@ var errorService = (function () {
 	}
 
 	function init() {
-		//event handler
+		//error handler
 		window.onerror = function (msg, url, line, col, error) {
 			//can add a service call to upload errors to a DB
 			//try catch the send so we dont end up in a reporting loop
@@ -86,16 +86,20 @@ var errorService = (function () {
 		};
 
 		//add the debug modal
-		var close = document.createElement('a');
-		close.onclick = "document.getElementById('debug').style.display = 'none';";
-		close.innerText = '[X]';
+		window.onload = function () {
+			var close = document.createElement('a');
+			close.onclick = function () {
+				document.getElementById('debug').style.display = 'none';
+			};
+			close.innerText = '[X]';
 
-		var debug = document.createElement('div');
-		debug.id = 'debug';
-		debug.style.display = 'none';
-		debug.appendChild(close);
+			var debug = document.createElement('div');
+			debug.id = 'debug';
+			debug.style.display = 'none';
+			debug.appendChild(close);
 
-		document.body.insertBefore(debug, document.body.firstChild);
+			document.body.insertBefore(debug, document.body.firstChild);
+		}
 	}
 
 	return {
