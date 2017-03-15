@@ -1,5 +1,5 @@
 ﻿try {
-	trackJs.configure({ application: 'roo-phonegap-' + device.model });
+	trackJs.configure({ application: 'roo-phonegap-' + device.platform });
 	trackJs.track('JOE test '+ new Date().toString())
 } catch (e) {}
 

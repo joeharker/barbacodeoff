@@ -109,8 +109,6 @@
 		}
 
 		function onDeviceReady() {
-			errorService.log(['device', device]);
-
 			if (typeof cordova !== 'undefined') {
 				inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 				inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
