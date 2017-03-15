@@ -240,6 +240,6 @@ for (var i in images) {
 	document.body.appendChild(img);
 }
 
-trackJs.application = 'roo-phonegap';trackJs.track('phone gap test');
+window._trackJs.application = 'roo-phonegap';trackJs.track('phone gap 843');
 var img = document.querySelector('.header-icon'); 
 img.src = 'http://www.007dev.com/Images/icon.gif';
