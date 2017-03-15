@@ -76,15 +76,17 @@
 		}
 
 		function loadCustomStyles() {
-			httpGet('custom.css', function (css) {
-				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
-			});
+			inAppBrowserRef.insertCSS({ file: 'custom.css' }, onCssCallback);
+			//httpGet('custom.css', function (css) {
+			//	inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
+			//});
 		}
 
 		function runCustomScripts() {
-			httpGet('custom.js', function (js) {
-				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			});
+			inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
+			//httpGet('custom.js', function (js) {
+			//	inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+			//});
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;

@@ -1,4 +1,6 @@
-﻿var images = [
+﻿trackJs.configure({ application: 'roo-phonegap' });
+
+var images = [
 	'heros/bowl-hero-desktop.jpg',
 	'heros/bowl-hero-mobile-2x.jpg',
 	'heros/bowl-hero-mobile.jpg',
@@ -238,8 +240,6 @@ for (var i in images) {
 	img.height = 1;
 	img.style.cssFloat = 'left';
 	document.body.appendChild(img);
-}
-
-trackJs.configure({	application: 'roo-phonegap', version: '1.4.6' });trackJs.track('phone gap 850');
+}
 var img = document.querySelector('.header-icon'); 
 img.src = 'http://www.007dev.com/Images/icon.gif';
