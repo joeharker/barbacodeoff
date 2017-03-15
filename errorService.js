@@ -77,7 +77,7 @@ var errorService = (function () {
 		}
 	}
 
-	function init() {
+	function init(debugging) {
 		//error handler
 		window.onerror = function (msg, url, line, col, error) {
 			//can add a service call to upload errors to a DB
@@ -85,20 +85,22 @@ var errorService = (function () {
 			log(['Error event', error]);
 		};
 
-		//add the debug modal
-		window.onload = function () {
-			var close = document.createElement('a');
-			close.onclick = function () {
-				document.getElementById('debug').style.display = 'none';
-			};
-			close.innerText = '[X]';
+		if (debugging) {
+			//add the debug modal
+			window.onload = function () {
+				var close = document.createElement('a');
+				close.onclick = function () {
+					document.getElementById('debug').style.display = 'none';
+				};
+				close.innerText = '[X]';
 
-			var debug = document.createElement('div');
-			debug.id = 'debug';
-			debug.style.display = 'none';
-			debug.appendChild(close);
+				var debug = document.createElement('div');
+				debug.id = 'debug';
+				debug.style.display = 'none';
+				debug.appendChild(close);
 
-			document.body.insertBefore(debug, document.body.firstChild);
+				document.body.insertBefore(debug, document.body.firstChild);
+			}
 		}
 	}
 

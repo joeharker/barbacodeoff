@@ -28,11 +28,7 @@
 	</style>
 	<script src="config.js"></script>
 	<script src="errorService.js"></script>
-	<script>
-		if (config.debug) {
-			errorService.init();
-		}
-	</script>
+	<script>errorService.init(config.debug);</script>
 	<script src="cordova.js"></script>
 </head>
 <body>
