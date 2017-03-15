@@ -101,7 +101,9 @@
 				loadCustomStyles();
 				runCustomScripts();
 			} else {
-				//onInAppBrowserExit();	//TODO: this is only commented out when you want the debug screen to remain on back button
+				if (!config.debug) {
+					onInAppBrowserExit();
+				}
 			}
 		}
 
@@ -121,6 +123,8 @@
 
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
+
+		//setTimeout(function () { errorService.log('joe test ' + new Date().toString()); }, 3000);
 	</script>
 </body>
 </html>
