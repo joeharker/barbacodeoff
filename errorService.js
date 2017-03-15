@@ -77,16 +77,30 @@ var errorService = (function () {
 		}
 	}
 
-	//event handler
-	window.onerror = function (msg, url, line, col, error) {
-		log(['Error event', error]);
+	function init() {
+		//event handler
+		window.onerror = function (msg, url, line, col, error) {
+			//can add a service call to upload errors to a DB
+			//try catch the send so we dont end up in a reporting loop
+			log(['Error event', error]);
+		};
 
-		//can add a service call to upload errors to a DB
-		//try catch the send so we dont end up in a reporting loop
-	};
+		//add the debug modal
+		var close = document.createElement('a');
+		close.onclick = "document.getElementById('debug').style.display = 'none';";
+		close.innerText = '[X]';
+
+		var debug = document.createElement('div');
+		debug.id = 'debug';
+		debug.style.display = 'none';
+		debug.appendChild(close);
+
+		document.body.insertBefore(debug, document.body.firstChild);
+	}
 
 	return {
-		log: log
+		log: log,
+		init: init
 	}
 
 })();

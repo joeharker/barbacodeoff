@@ -27,14 +27,10 @@
 		}
 	</style>
 	<script src="errorService.js"></script>
+	<script>errorService.init();</script>
 	<script src="cordova.js"></script>
 </head>
 <body>
-	<div id="debug">
-		<!-- can remove for prod -->
-		<a onclick="document.getElementById('debug').style.display = 'none';">[X]</a>
-		<script>document.getElementById('debug').style.display = 'none';</script>
-	</div>
 	<div class="flex-container">
 		<div class="center-row">
 			<div class="center-item">
@@ -76,17 +72,18 @@
 		}
 
 		function loadCustomStyles() {
-			inAppBrowserRef.insertCSS({ file: 'custom.css' }, onCssCallback);
-			//httpGet('custom.css', function (css) {
-			//	inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
-			//});
+			//Docs say this works but it does not: inAppBrowserRef.insertCSS({ file: 'custom.css' }, onCssCallback);
+			httpGet('custom.css', function (css) {
+				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
+			});
 		}
 
 		function runCustomScripts() {
-			inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
-			//httpGet('custom.js', function (js) {
-			//	inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			//});
+			//do not put a return in the javascript
+			//Docs say this works but it does not: inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
+			httpGet('custom.js', function (js) {
+				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+			});
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;
