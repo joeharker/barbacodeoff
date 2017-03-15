@@ -1,7 +1,7 @@
-﻿try {
+﻿/*try {
 	trackJs.configure({ application: 'roo-phonegap-' + device.model });
 	trackJs.track('JOE test '+ new Date().toString())
-} catch (e) {}
+} catch (e) {}*/
 
 var images = [
 	'heros/bowl-hero-desktop.jpg',
