@@ -114,13 +114,15 @@
 				inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 				inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 				inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
+
+				errorService.log(window.device);
 			}
 		}
 
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
 
-		setTimeout(function () { errorService.log('roo-phonegap-' + device.model); }, 3000);
+		//setTimeout(function () {  }, 3000);
 	</script>
 </body>
 </html>
