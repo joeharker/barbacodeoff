@@ -2,17 +2,8 @@
   <name>CodeOff</name>
   <description>Web iOS and Android all in one</description>
   <author href="http://007dev.com" email="joeharker@007dev.com">Joe Harker</author>
-
-	<access origin="*" />
-	<allow-navigation href="https://*.chipotle.com/*" />
-	<allow-navigation href="*" />
-	<allow-intent href="https://*.chipotle.com/*" />
-	<allow-intent href="*" />
-	<allow-intent href="tel:*" />
-	<allow-intent href="sms:*" />
-	<allow-intent href="mailto:*" />
-	<allow-intent href="geo:*" />
-	<content src="index.html" />
+	
+  <content src="index.html"/>
   
 	<preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
