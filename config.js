@@ -3,7 +3,7 @@
 
 	values = {
 		url: 'https://qa-order.chipotle.com/',
-		debug: false
+		debug: true
 	};
 
 	switch (environment) {
