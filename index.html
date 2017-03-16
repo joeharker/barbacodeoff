@@ -82,9 +82,13 @@
 		function runCustomScripts() {
 			//do not put a return in the javascript
 			//Docs say this works but it does not: inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
-			httpGet('custom.js', function (js) {
-				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			});
+			try{
+				httpGet('custom.js', function (js) {
+					inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+				});
+			} catch (e) {
+				errorService.log(e);
+			}
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;

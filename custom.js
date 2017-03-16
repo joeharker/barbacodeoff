@@ -1,10 +1,5 @@
-﻿try {
-	trackJs.configure({ application: 'roo-phonegap-' + device.platform });
-	trackJs.track('JOE test ' + new Date().toString());
-	errorService.log(['roo-phonegap-' + device.platform, 'JOE test ' + new Date().toString()]);
-} catch (e) {
-	errorService.log(e);
-}
+﻿trackJs.configure({ application: 'roo-phonegap-' + device.platform });
+trackJs.track('JOE test ' + new Date().toString());
 
 var images = [
 	'heros/bowl-hero-desktop.jpg',
