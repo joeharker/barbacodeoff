@@ -82,13 +82,13 @@
 		function runCustomScripts() {
 			//do not put a return in the javascript
 			//Docs say this works but it does not: inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
-			try{
-				httpGet('custom.js', function (js) {
+			httpGet('custom.js', function (js) {
+				try {
 					inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-				});
-			} catch (e) {
-				errorService.log(e);
-			}
+				} catch (e) {
+					errorService.log(e);
+				}
+			});
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;
@@ -124,7 +124,7 @@
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
 
-		setTimeout(function () { errorService.log('roo-phonegap-' + device.platform); }, 3000);
+		//setTimeout(function () { errorService.log('roo-phonegap-' + device.platform); }, 3000);
 	</script>
 </body>
 </html>
