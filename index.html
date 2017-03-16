@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="msapplication-tap-highlight" content="no" />
-	<link rel="shortcut icon" href="favicon.ico?">
 	<link href="debug.css" rel="stylesheet" />
 	<style>
 		#logo {
@@ -35,7 +34,7 @@
 	<div class="flex-container">
 		<div class="center-row">
 			<div class="center-item">
-				<img id="logo" src="res/logo.svg" />
+				<img id="logo" src="images/logo.svg" />
 			</div>
 		</div>
 	</div>
@@ -112,7 +111,7 @@
 			if (inAppBrowserRef !== undefined) {
 				inAppBrowserRef.close();
 			}
-			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=no');
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=yes');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
