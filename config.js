@@ -1,5 +1,5 @@
 ﻿var config = (function () {
-	var environment = 'PROD';
+	var environment = 'QA';
 
 	values = {
 		url: 'https://qa-order.chipotle.com/',
