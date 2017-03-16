@@ -51,6 +51,7 @@
 
 		function onInAppBrowserLoadError(params) {
 			errorService.log(['InAppBrowser error', params]);
+			onInAppBrowserExit();
 		}
 
 		function httpGet(url, callback) {
@@ -103,10 +104,11 @@
 		}
 
 		function onDeviceReady() {
+			errorService.log(['inAppBrowserRef', inAppBrowserRef]);
 			if (inAppBrowserRef !== undefined) {
-				inAppBrowserRef.close();
+				//inAppBrowserRef.close();
 			}
-			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=yes');
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=no');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
