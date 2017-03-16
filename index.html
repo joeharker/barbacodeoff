@@ -89,7 +89,7 @@
 
 		function onInAppBrowserExit() {
 			//if they exit too far lets get them back into the InAppBrowser
-			setTimeout(function () { onDeviceReady(); }, 10000);
+			setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;
