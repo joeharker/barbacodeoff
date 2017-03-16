@@ -71,8 +71,8 @@
 	<icon qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
 
   <access origin="*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
+  <allow-intent href="http://*.chipotle.com/*" />
+  <allow-intent href="https://*.chipotle.com/*" />
   <allow-intent href="tel:*" />
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
