@@ -43,11 +43,11 @@
 		var inAppBrowserRef;
 
 		function onScriptCallback(params) {
-			errorService.log(['onScriptCallback', params]);
+			//errorService.log(['onScriptCallback', params]);
 		}
 
 		function onCssCallback(params) {
-			errorService.log(['onCssCallback', params]);
+			//errorService.log(['onCssCallback', params]);
 		}
 
 		function onInAppBrowserLoadError(params) {
@@ -83,20 +83,15 @@
 			//do not put a return in the javascript
 			//Docs say this works but it does not: inAppBrowserRef.executeScript({ file: 'custom.js' }, onScriptCallback);
 			httpGet('custom.js', function (js) {
-				try {
-					inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-				} catch (e) {
-					errorService.log(e);
-				}
+				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
 			});
 		}
 
 		function onInAppBrowserExit() {
-			errorService.log('onInAppBrowserExit '+ new Date().toString());
 			//if they exit too far lets get them back into the InAppBrowser
-			//if (!config.debug) {
+			if (!config.debug) {
 				onDeviceReady();
-			//}
+			}
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;
@@ -114,7 +109,9 @@
 		}
 
 		function onDeviceReady() {
-			errorService.log(['inAppBrowserRef', inAppBrowserRef]);
+			if (inAppBrowserRef !== undefined) {
+				inAppBrowserRef.close();
+			}
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=no');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
@@ -123,8 +120,6 @@
 
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
-
-		//setTimeout(function () { errorService.log('roo-phonegap-' + device.platform); }, 3000);
 	</script>
 </body>
 </html>
