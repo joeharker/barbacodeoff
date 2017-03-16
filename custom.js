@@ -1,7 +1,4 @@
-﻿trackJs.configure({ application: 'roo-phonegap' });
-trackJs.track('JOE Error');
-
-var images = [
+﻿var images = [
 	'heros/bowl-hero-desktop.jpg',
 	'heros/bowl-hero-mobile-2x.jpg',
 	'heros/bowl-hero-mobile.jpg',
