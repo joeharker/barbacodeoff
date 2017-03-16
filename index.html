@@ -124,7 +124,7 @@
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
 
-		//setTimeout(function () {  }, 3000);
+		setTimeout(function () { errorService.log('roo-phonegap-' + device.platform); }, 3000);
 	</script>
 </body>
 </html>

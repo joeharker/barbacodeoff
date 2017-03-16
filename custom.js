@@ -1,5 +1,4 @@
 ﻿trackJs.configure({ application: 'roo-phonegap-' + device.platform });
-trackJs.track('JOE test ' + new Date().toString());
 
 var images = [
 	'heros/bowl-hero-desktop.jpg',
