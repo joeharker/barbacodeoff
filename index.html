@@ -88,22 +88,17 @@
 
 		function onInAppBrowserExit() {
 			//if they exit too far lets get them back into the InAppBrowser
-			if (!config.debug) {
-				onDeviceReady();
-			}
+			setTimeout(function () { onDeviceReady(); }, 10000);
 		}
 
 		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
+			inAppBrowserRef.show();
+
 			if (onInAppBrowserLoadStopFirstRun) {
 				onInAppBrowserLoadStopFirstRun = false;
-
-				inAppBrowserRef.show();
-
 				loadCustomStyles();
 				runCustomScripts();
-			} else {
-				onInAppBrowserExit();
 			}
 		}
 
