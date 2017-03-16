@@ -113,8 +113,8 @@
 		}
 
 		function onDeviceReady() {
-			//var target = device.platform === 'iOS' ? '_system' : '_self';
-			var target = '_blank';
+			var target = device.platform === 'iOS' ? '_system' : '_self';
+			//var target = '_blank';
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, target, 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
