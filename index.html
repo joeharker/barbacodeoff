@@ -91,6 +91,14 @@
 			});
 		}
 
+		function onInAppBrowserExit() {
+			errorService.log('onInAppBrowserExit');
+			//if they exit too far lets get them back into the InAppBrowser
+			if (!config.debug) {
+				onDeviceReady();
+			}
+		}
+
 		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
 			if (onInAppBrowserLoadStopFirstRun) {
@@ -105,15 +113,9 @@
 			}
 		}
 
-		function onInAppBrowserExit() {
-			//if they exit too far lets get them back into the InAppBrowser
-			if (!config.debug) {
-				onDeviceReady();
-			}
-		}
-
 		function onDeviceReady() {
 			var target = device.platform === 'iOS' ? '_system' : '_self';
+			errorService.log(target);
 			//var target = '_blank';
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, target, 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
