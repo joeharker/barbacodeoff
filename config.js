@@ -4,12 +4,14 @@
 	values = {
 		url: 'https://qa-order.chipotle.com/',
 		debug: true,
-		reloadDelay: 10000
+		reloadDelay: 10000,
+		iosBackButton: 'no'
 	};
 
 	switch (environment) {
 		case 'DEV':
 			values.debug = true;
+			values.iosBackButton = 'yes';
 			break;
 		case 'QA':
 			break;
