@@ -113,12 +113,12 @@
 		}
 
 		function onDeviceReady() {
-			if (typeof cordova !== 'undefined') {
-				inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_self', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
-				inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
-				inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
-				inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
-			}
+			//var target = device.platform === 'iOS' ? '_system' : '_self';
+			var trarget = '_blank';
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url, target, 'location=no,hidden=yes,clearcache=no,clearsessioncache=no');
+			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
+			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
 
 		//when cordova is ready
