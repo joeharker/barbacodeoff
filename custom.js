@@ -1,4 +1,4 @@
-﻿trackJs.configure({ application: 'roo-phonegap-' + String(device.platform) });
+﻿trackJs.configure({ application: 'roo-phonegap' });
 trackJs.track('JOE Error');
 
 var images = [

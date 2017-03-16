@@ -93,7 +93,7 @@
 
 		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
-			if (inAppBrowserRef != undefined && onInAppBrowserLoadStopFirstRun) {
+			if (onInAppBrowserLoadStopFirstRun) {
 				onInAppBrowserLoadStopFirstRun = false;
 
 				inAppBrowserRef.show();
@@ -101,9 +101,9 @@
 				loadCustomStyles();
 				runCustomScripts();
 			} else {
-				//if (!config.debug) {
+				if (!config.debug) {
 					onInAppBrowserExit();
-				//}
+				}
 			}
 		}
 
