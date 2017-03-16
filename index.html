@@ -26,7 +26,7 @@
 			text-align: center;
 		}
 	</style>
-	<script src="config.js?v=201703161134"></script>
+	<script src="config.js"></script>
 	<script src="errorService.js"></script>
 	<script>errorService.init(config.debug);</script>
 	<script src="cordova.js"></script>
@@ -101,15 +101,15 @@
 				loadCustomStyles();
 				runCustomScripts();
 			} else {
-				if (!config.debug) {
-					onInAppBrowserExit();
-				}
+				onInAppBrowserExit();
 			}
 		}
 
 		function onInAppBrowserExit() {
 			//if they exit too far lets get them back into the InAppBrowser
-			onDeviceReady();
+			if (!config.debug) {
+				onDeviceReady();
+			}
 		}
 
 		function onDeviceReady() {
