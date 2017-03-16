@@ -4,8 +4,8 @@
   <author href="http://007dev.com" email="joeharker@007dev.com">Joe Harker</author>
 
 	<access origin="*" />
-	<allow-navigation href="https://*.chipotle.com/*" />
-	<allow-intent href="https://*.chipotle.com/*" />
+	<allow-navigation href="*" />
+	<allow-intent href="*" />
 	<allow-intent href="tel:*" />
 	<allow-intent href="sms:*" />
 	<allow-intent href="mailto:*" />
