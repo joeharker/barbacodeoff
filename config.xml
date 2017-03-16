@@ -43,8 +43,9 @@
     <plugin name="cordova-plugin-vibration" />
 		<plugin name="cordova-plugin-whitelist" />
   -->
-	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-device" />
+	<plugin name="cordova-plugin-inappbrowser" />
+	<plugin name="cordova-plugin-whitelist" />
 
 	<icon src="icon.png" />
 	<icon src="res/icons/ios/icon-small.png" width="29" height="29" />
@@ -69,19 +70,18 @@
 	<icon qualifier="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
 	<icon qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
 
-  <access origin="*"/>
-  <plugin name="cordova-plugin-whitelist" />
-  <allow-intent href="http://*/*"/>
-  <allow-intent href="https://*/*"/>
-  <allow-intent href="tel:*"/>
-  <allow-intent href="sms:*"/>
-  <allow-intent href="mailto:*"/>
-  <allow-intent href="geo:*"/>
+  <access origin="*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
 	<platform name="android">
-    <allow-intent href="market:*"/>
+    <allow-intent href="market:*" />
   </platform>
   <platform name="ios">
-    <allow-intent href="itms:*"/>
-    <allow-intent href="itms-apps:*"/>
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
   </platform>
 </widget>
