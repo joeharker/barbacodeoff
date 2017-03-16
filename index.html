@@ -92,7 +92,7 @@
 		}
 
 		function onInAppBrowserExit() {
-			errorService.log('onInAppBrowserExit');
+			errorService.log('onInAppBrowserExit '+ new Date().toString());
 			//if they exit too far lets get them back into the InAppBrowser
 			if (!config.debug) {
 				onDeviceReady();
@@ -115,7 +115,7 @@
 
 		function onDeviceReady() {
 			var target = '_blank';
-			inAppBrowserRef = cordova.InAppBrowser.open(config.url, target, 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=no');
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url, target, 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes');
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
