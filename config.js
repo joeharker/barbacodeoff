@@ -17,7 +17,7 @@
 			values.iosBackButton = 'yes';
 			break;
 		case 'QA':
-			values.url = 'https://qa-order.chipotle.com/';
+			values.url = 'https://qa1-order.chipotle.com/';
 			break;
 		case 'STAGE':
 			values.url = 'https://stg-order.chipotle.com/';
