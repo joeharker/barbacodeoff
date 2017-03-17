@@ -43,7 +43,6 @@
 
 		function onScriptCallback(params) {
 			//errorService.log(['onScriptCallback', params]);
-			errorService.log(['location', location]);
 		}
 
 		function onCssCallback(params) {
@@ -117,6 +116,8 @@
 
 		//when cordova is ready
 		document.addEventListener('deviceready', onDeviceReady, false);
+
+		setTimeout(function () { errorService.log(['location', location]); }, 3000);
 	</script>
 </body>
 </html>
