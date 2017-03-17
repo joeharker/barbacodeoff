@@ -70,7 +70,7 @@
 			var xmlHttp = new XMLHttpRequest();
 			xmlHttp.onreadystatechange = function () {
 				if (xmlHttp.readyState === 4) {
-					if (xmlHttp.status === 200) {
+					if ([0,200].indexOf(xmlHttp.status) !== -1) {
 						callback(xmlHttp.responseText);
 					} else {
 						errorService.log(['Error: httpGet not 200', xmlHttp]);
