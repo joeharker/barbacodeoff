@@ -85,18 +85,18 @@
 		}
 
 		function loadCustomStyles() {
-			//Docs say this works but it does not: inAppBrowserRef.insertCSS({ file: getRoot() + 'custom.css' }, onCssCallback);
-			httpGet(getRoot() + 'custom.css', function (css) {
-				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
-			});
+			inAppBrowserRef.insertCSS({ file: getRoot() + 'custom.css' }, onCssCallback); //Docs say this works but it does not: 
+			//httpGet(getRoot() + 'custom.css', function (css) {
+			//	inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
+			//});
 		}
 
 		function runCustomScripts() {
 			//do not put a return in the javascript
-			//Docs say this works but it does not: inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);
-			httpGet(getRoot() + 'custom.js', function (js) {
-				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			});
+			inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
+			//httpGet(getRoot() + 'custom.js', function (js) {
+			//	inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+			//});
 		}
 
 		function onInAppBrowserExit() {
@@ -104,15 +104,11 @@
 			setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 		}
 
-		var onInAppBrowserLoadStopFirstRun = true;
 		function onInAppBrowserLoadStop() {
+			errorService.log('onInAppBrowserLoadStop');
 			inAppBrowserRef.show();
-
-			//if (onInAppBrowserLoadStopFirstRun) {
-			//	onInAppBrowserLoadStopFirstRun = false;
-				loadCustomStyles();
-				runCustomScripts();
-			//}
+			loadCustomStyles();
+			runCustomScripts();
 		}
 
 		function onDeviceReady() {
