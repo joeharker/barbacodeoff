@@ -1,5 +1,5 @@
 ﻿var config = (function () {
-	var environment = 'QA';
+	var environment = 'STAGE';
 
 	//default to prod values
 	values = {
