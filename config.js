@@ -1,7 +1,8 @@
 ﻿var config = (function () {
-	var environment = 'QA';
+	var env = { DEV: 0, QA: 1, STAGE: 2, PROD: 3 };
+	var environment = env.DEV;
 
-	//default to prod values
+	//PROD as default values
 	values = {
 		url: 'https://order.chipotle.com/',
 		debug: false,
@@ -9,23 +10,24 @@
 		iosBackButton: 'no'
 	};
 
+	//only change values that are different
 	switch (environment) {
-		case 'DEV':
+		case env.DEV:
 			values.url = 'https://order.chipotle.com/';
 			values.debug = true;
 			values.reloadDelay = 10000;
 			values.iosBackButton = 'yes';
 			break;
-		case 'QA':
+
+		case env.QA:
 			values.url = 'https://qa1-order.chipotle.com/';
 			break;
-		case 'STAGE':
+
+		case env.STAGE:
 			values.url = 'https://stg-order.chipotle.com/';
 			break;
-		case 'PROD':
-			values.url = 'https://order.chipotle.com/';
-			break;
-		default:
+
+		default: //PROD
 	}
 
 	return values;
