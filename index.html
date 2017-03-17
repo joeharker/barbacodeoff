@@ -85,18 +85,18 @@
 		}
 
 		function loadCustomStyles() {
-			inAppBrowserRef.insertCSS({ file: getRoot() + 'custom.css' }, onCssCallback); //Docs say this works but it does not: 
-			//httpGet(getRoot() + 'custom.css', function (css) {
-			//	inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
-			//});
+			////inAppBrowserRef.insertCSS({ file: getRoot() + 'custom.css' }, onCssCallback); //Docs say this works but it does not: 
+			httpGet(getRoot() + 'custom.css', function (css) {
+				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
+			});
 		}
 
 		function runCustomScripts() {
 			//do not put a return in the javascript
-			inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
-			//httpGet(getRoot() + 'custom.js', function (js) {
-			//	inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			//});
+			////inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
+			httpGet(getRoot() + 'custom.js', function (js) {
+				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
+			});
 		}
 
 		function onInAppBrowserExit() {
@@ -105,7 +105,6 @@
 		}
 
 		function onInAppBrowserLoadStop() {
-			errorService.log('onInAppBrowserLoadStop');
 			inAppBrowserRef.show();
 			loadCustomStyles();
 			runCustomScripts();
