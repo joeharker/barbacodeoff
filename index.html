@@ -6,121 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="msapplication-tap-highlight" content="no" />
-	<link href="debug.css" rel="stylesheet" />
-	<style>
-		#logo {
-			max-width: 100%;
-			max-height: 100vh;
-		}
-		.flex-container {
-			height: 95vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.center-row {
-			width: 100%;
-		}
-		.center-item {
-			text-align: center;
-		}
-	</style>
-	<script src="config.js"></script>
-	<script src="errorService.js"></script>
-	<script>errorService.init(config.debug);</script>
+	<link href="bootloader/bootloader.css" rel="stylesheet" />
+	<script src="bootloader/config.js"></script>
+	<script src="bootloader/logService.js"></script>
+	<script>logService.init(config.debug);</script>
 	<script src="cordova.js"></script>
+	<script src="bootloader/bootloader.js"></script>
 </head>
 <body>
 	<div class="flex-container">
 		<div class="center-row">
 			<div class="center-item">
-				<img id="logo" src="images/logo.svg" />
+				<img id="logo" src="bootloader/images/logo.svg" />
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		var inAppBrowserRef;
-
-		function onScriptCallback(params) {
-			//errorService.log(['onScriptCallback', params]);
-		}
-
-		function onCssCallback(params) {
-			//errorService.log(['onCssCallback', params]);
-		}
-
-		function onInAppBrowserLoadError(params) {
-			errorService.log(['InAppBrowser error', params]);
-			onInAppBrowserExit();
-		}
-
-		function getRoot() {
-			var root = '';
-			var findRoot = new RegExp('^(.*/)', 'gi');
-			var matches = findRoot.exec(location.href);
-
-			if (matches) {
-				root = matches[1];
-			}
-
-			return root;
-		}
-
-		function httpGet(url, callback) {
-			var xmlHttp = new XMLHttpRequest();
-			xmlHttp.onreadystatechange = function () {
-				if (xmlHttp.readyState === 4) {
-					if ([0,200].indexOf(xmlHttp.status) !== -1) {
-						callback(xmlHttp.responseText);
-					} else {
-						errorService.log(['Error: httpGet not 200', xmlHttp]);
-					}
-				}
-			};
-			xmlHttp.onerror = function (e) {
-				errorService.log(['Error: httpGet', e]);
-			};
-			xmlHttp.open('GET', url, true); // true for asynchronous 
-			xmlHttp.send(null);
-		}
-
-		function loadCustomStyles() {
-			////inAppBrowserRef.insertCSS({ file: getRoot() + 'custom.css' }, onCssCallback); //Docs say this works but it does not: 
-			httpGet(getRoot() + 'custom.css', function (css) {
-				inAppBrowserRef.insertCSS({ code: css }, onCssCallback);
-			});
-		}
-
-		function runCustomScripts() {
-			//do not put a return in the javascript
-			////inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
-			httpGet(getRoot() + 'custom.js', function (js) {
-				inAppBrowserRef.executeScript({ code: js }, onScriptCallback);
-			});
-		}
-
-		function onInAppBrowserExit() {
-			//if they exit too far lets get them back into the InAppBrowser
-			setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
-		}
-
-		function onInAppBrowserLoadStop() {
-			inAppBrowserRef.show();
-			loadCustomStyles();
-			runCustomScripts();
-		}
-
-		function onDeviceReady() {
-			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
-			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
-			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
-			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
-		}
-
-		//when cordova is ready
-		document.addEventListener('deviceready', onDeviceReady, false);
-
-		//setTimeout(function () { errorService.log(['location', location]); }, 3000);
-	</script>
 </body>
 </html>

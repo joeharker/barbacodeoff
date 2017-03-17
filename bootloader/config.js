@@ -1,9 +1,12 @@
-﻿var config = (function () {
+﻿'use strict';
+
+var config = (function () {
 	var env = { DEV: 0, QA: 1, STAGE: 2, PROD: 3 };
+
 	var environment = env.DEV;
 
 	//PROD as default values
-	values = {
+	var values = {
 		url: 'https://order.chipotle.com/',
 		debug: false,
 		reloadDelay: 1,

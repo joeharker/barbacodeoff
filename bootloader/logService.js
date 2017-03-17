@@ -1,6 +1,6 @@
 'use strict';
 
-var errorService = (function () {
+var logService = (function () {
 	//pretty logger
 	function addCell(row, text, clas) {
 		var cel = row.insertCell();
@@ -21,7 +21,7 @@ var errorService = (function () {
 		addCell(row, thatType, 'type');
 		addCell(row, key, 'name');
 
-		if (maxRecursions > 0 && typeof value === 'object' && value != null
+		if (maxRecursions > 0 && typeof value === 'object' && value !== null
 				&& key !== 'enabledPlugin' //this is a recursive link to the plug in that lists its self
 		) {
 			var cel = row.insertCell();
@@ -58,7 +58,7 @@ var errorService = (function () {
 	}
 
 	//public methods
-	function log(obj) {
+	function write(obj) {
 		console.log(obj);
 
 		//debug dump to screen for mobile testing
@@ -82,7 +82,7 @@ var errorService = (function () {
 		window.onerror = function (msg, url, line, col, error) {
 			//can add a service call to upload errors to a DB
 			//try catch the send so we dont end up in a reporting loop
-			log(['Error event', error]);
+			write(['Error event', error]);
 		};
 
 		if (debugging) {
@@ -100,13 +100,12 @@ var errorService = (function () {
 				debug.appendChild(close);
 
 				document.body.insertBefore(debug, document.body.firstChild);
-			}
+			};
 		}
 	}
 
 	return {
-		log: log,
+		write: write,
 		init: init
-	}
-
+	};
 })();
