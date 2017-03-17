@@ -106,11 +106,8 @@
 
 		function onDeviceReady() {
 			if (inAppBrowserRef !== undefined) {
-				try {
-					inAppBrowserRef.close();
-				} catch (e) {
-					errorService.log(e);
-				}
+				//iphone seams to allow .close, and droid does not. whats different?
+				errorService.log(['inAppBrowserRef', inAppBrowserRef]);
 			}
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);

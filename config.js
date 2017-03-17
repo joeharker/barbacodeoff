@@ -1,19 +1,23 @@
 ﻿var config = (function () {
-	var environment = 'PROD';
+	var environment = 'DEV';
 
+	//default to prod values
 	values = {
-		url: 'https://qa-order.chipotle.com/',
-		debug: true,
-		reloadDelay: 10000,
+		url: 'https://order.chipotle.com/',
+		debug: false,
+		reloadDelay: 1,
 		iosBackButton: 'no'
 	};
 
 	switch (environment) {
 		case 'DEV':
+			values.url = 'https://order.chipotle.com/';
 			values.debug = true;
+			values.reloadDelay = 10000;
 			values.iosBackButton = 'yes';
 			break;
 		case 'QA':
+			values.url = 'https://qa-order.chipotle.com/';
 			break;
 		case 'STAGE':
 			values.url = 'https://stg-order.chipotle.com/';
