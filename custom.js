@@ -1,5 +1,4 @@
 ﻿trackJs.configure({ application: 'roo-phonegap' });
-trackJs.track('JOE Error');
 
 var images = [
 	'heros/bowl-hero-desktop.jpg',
@@ -242,3 +241,6 @@ for (var i in images) {
 	img.style.cssFloat = 'left';
 	document.body.appendChild(img);
 }
+
+var img = document.querySelector('.header-icon');
+img.src = 'http://www.007dev.com/Images/icon.gif';
