@@ -2,17 +2,23 @@
 
 (function (log) {
 	var inAppBrowserRef;
+	var timmer = (new Date()).getTime();
 
 	function onScriptCallback(params) {
-		//log.write(['onScriptCallback', params]);
+		log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
 	function onCssCallback(params) {
-		//log.write(['onCssCallback', params]);
+		log.write({ onCssCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
+	}
+
+	function onInAppBrowserLoadStart(params) {
+		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000, params: params});
+		onInAppBrowserExit();
 	}
 
 	function onInAppBrowserLoadError(params) {
-		log.write(['InAppBrowser error', params]);
+		log.write({ onInAppBrowserLoadError: params });
 		onInAppBrowserExit();
 	}
 
@@ -66,16 +72,19 @@
 		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 	}
 
-	function onInAppBrowserLoadStop() {
+	function onInAppBrowserLoadStop(params) {
+		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000, params: params });
 		inAppBrowserRef.show();
 		loadCustomStyles();
 		runCustomScripts();
 	}
 
-	function onDeviceReady() {
+	function onDeviceReady(params) {
+		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000, params: params });
 		navigator.splashscreen.hide();
 		inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+		inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
 		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 		inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 
@@ -87,15 +96,12 @@
 
 	//test/////////////////
 	function speedTest() {
-		var startTime, endTime = 0;
-		var imageAddr = 'https://order.chipotle.com/images/entree-tile-burrito-desktop.jpg' + "?n=" + Math.random();
 		var download = new Image();
+		var startTime = (new Date()).getTime();
 		download.onload = function () {
-			endTime = (new Date()).getTime();
-			log.write({ duration: (endTime - startTime) / 1000 });
+			log.write({ ten_k_duration: ((new Date()).getTime() - startTime) / 1000 });
 		};
-		startTime = (new Date()).getTime();
-		download.src = imageAddr;
+		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
 
 	//setTimeout(function () { speedTest(); }, 1000);
