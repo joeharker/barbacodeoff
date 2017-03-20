@@ -12,8 +12,8 @@
 		log.write({ onCssCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
-	function onInAppBrowserLoadStart(params) {
-		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000, params: params});
+	function onInAppBrowserLoadStart() {
+		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000});
 		onInAppBrowserExit();
 	}
 
@@ -41,12 +41,12 @@
 				if ([0, 200].indexOf(xmlHttp.status) !== -1) {
 					callback(xmlHttp.responseText);
 				} else {
-					log.write(['Error: httpGet not 200', xmlHttp]);
+					log.write({ httpGetNot200: xmlHttp });
 				}
 			}
 		};
 		xmlHttp.onerror = function (e) {
-			log.write(['Error: httpGet', e]);
+			log.write({ httpGetError: e });
 		};
 		xmlHttp.open('GET', url, true); // true for asynchronous 
 		xmlHttp.send(null);
@@ -72,15 +72,15 @@
 		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 	}
 
-	function onInAppBrowserLoadStop(params) {
-		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000, params: params });
+	function onInAppBrowserLoadStop() {
+		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
 		inAppBrowserRef.show();
 		loadCustomStyles();
 		runCustomScripts();
 	}
 
-	function onDeviceReady(params) {
-		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000, params: params });
+	function onDeviceReady() {
+		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
 		navigator.splashscreen.hide();
 		inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
@@ -104,5 +104,5 @@
 		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
 
-	//setTimeout(function () { speedTest(); }, 1000);
+	//setTimeout(function () { log.write({ test: ((new Date()).getTime() - timmer) / 1000 }); }, 1000);
 })(logService);
