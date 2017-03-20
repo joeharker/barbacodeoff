@@ -18,7 +18,7 @@ var config = (function () {
 		case env.DEV:
 			values.url = 'https://order.chipotle.com/';
 			values.debug = true;
-			values.reloadDelay = 10000;
+			values.reloadDelay = 60000;
 			values.iosBackButton = 'yes';
 			break;
 
