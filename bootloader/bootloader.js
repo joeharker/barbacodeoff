@@ -78,33 +78,25 @@
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 		inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
+
+		speedTest();
 	}
 
 	//when cordova is ready
 	document.addEventListener('deviceready', onDeviceReady, false);
 
 	//test/////////////////
-	function showResults(startTime, endTime, imageAddr, downloadSize) {
-			var duration = (endTime - startTime) / 1000;
-			var bitsLoaded = downloadSize * 8;
-			var speedKbps = (bitsLoaded / duration / 1024).toFixed(2);
-			log.write(['speedKbps', speedKbps]);
-			//if (speedKbps < 400) {
-			//} else if (speedKbps >= 400 && speedKbps < 800) {
-			//} else if (speedKbps >= 800) {
-			//}
-	}
-	function test() {
-		var downloadSize = 1037745;
-		var imageAddr = 'https://order.chipotle.com/images/entree-tile-burrito-desktop.jpg' + "?n=" + Math.random();
+	function speedTest() {
 		var startTime, endTime = 0;
+		var imageAddr = 'https://order.chipotle.com/images/entree-tile-burrito-desktop.jpg' + "?n=" + Math.random();
 		var download = new Image();
 		download.onload = function () {
 			endTime = (new Date()).getTime();
-			showResults(startTime, endTime, imageAddr, downloadSize);
+			log.write({ duration: (endTime - startTime) / 1000 });
 		};
 		startTime = (new Date()).getTime();
 		download.src = imageAddr;
 	}
-	setTimeout(function () { test(); }, 1000);
+
+	//setTimeout(function () { speedTest(); }, 1000);
 })(logService);
