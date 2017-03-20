@@ -69,26 +69,29 @@
 
 	function onInAppBrowserExit() {
 		//if they exit too far lets get them back into the InAppBrowser
+		if (inAppBrowserRef) {
+			inAppBrowserRef.close();
+		}
 		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 	}
 
-	function onInAppBrowserLoadStop(params) {
-		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000, params: params });
+	function onInAppBrowserLoadStop() {
+		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
 		inAppBrowserRef.show();
 		loadCustomStyles();
 		runCustomScripts();
 	}
 
-	function onDeviceReady(params) {
-		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000, params: params });
+	function onDeviceReady() {
+		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
 		//navigator.splashscreen.hide();
-		inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
-		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
-		inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
-		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
-		inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
-
-		speedTest();
+		if (inAppBrowserRef) {
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
+			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+			inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
+			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
+			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
+		}
 	}
 
 	//when cordova is ready
@@ -104,5 +107,5 @@
 		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
 
-	//setTimeout(function () { log.write({ test: ((new Date()).getTime() - timmer) / 1000 }); }, 1000);
+	setTimeout(function () { speedTest(); }, 1000);
 })(logService);
