@@ -92,6 +92,12 @@
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
+
+		setTimeout(function () {
+			inAppBrowserRef.executeScript({
+				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded'); }, false);"
+			}, onScriptCallback);
+		}, 1000);
 	}
 
 	//when cordova is ready
