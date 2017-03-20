@@ -73,14 +73,13 @@
 
 	function onInAppBrowserLoadStart() {
 		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
-		runCustomScripts();
 	}
 
 	function onInAppBrowserLoadStop() {
 		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
 		inAppBrowserRef.show();
 		loadCustomStyles();
-		//runCustomScripts();
+		runCustomScripts();
 	}
 
 	function onDeviceReady() {
