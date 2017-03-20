@@ -73,6 +73,7 @@
 	}
 
 	function onDeviceReady() {
+		navigator.splashscreen.hide();
 		inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
@@ -94,8 +95,8 @@
 			//}
 	}
 	function test() {
-		var downloadSize = 21111;
-		var imageAddr = 'http://drpma142ptgxf.cloudfront.net/assets/logo.svg' + "?n=" + Math.random();
+		var downloadSize = 1037745;
+		var imageAddr = 'https://order.chipotle.com/images/entree-tile-burrito-desktop.jpg' + "?n=" + Math.random();
 		var startTime, endTime = 0;
 		var download = new Image();
 		download.onload = function () {

@@ -15,8 +15,10 @@
 	<preference name="ios-statusbarstyle" value="black-opaque" />
 	<preference name="detect-data-types" value="true" />
 	<preference name="exit-on-suspend" value="false" />
-	<preference name="show-splash-screen-spinner" value="true" />
+	<preference name="show-splash-screen-spinner" value="false" />
 	<preference name="auto-hide-splash-screen" value="true" />
+	<preference name="SplashScreenDelay" value="0"/>
+	<preference name="FadeSplashScreenDuration" value="0"/>
 	<preference name="disable-cursor" value="false" />
 	<preference name="android-minSdkVersion" value="14" />
 	<preference name="android-installLocation" value="auto" />
@@ -43,6 +45,7 @@
     <plugin name="cordova-plugin-vibration" />
 		<plugin name="cordova-plugin-whitelist" />
   -->
+	<plugin name="cordova-plugin-splashscreen" />
 	<plugin name="cordova-plugin-device" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-whitelist" />
@@ -63,13 +66,7 @@
 	<icon src="res/icons/ios/icon-72-2x.png" width="144" height="144" />
 	<icon src="res/icons/ios/icon-76.png" width="76" height="76" />
 	<icon src="res/icons/ios/icon-76-2x.png" width="152" height="152" />
-	<splash src="res/screens/ios/screen-iphone-portrait.png" width="320" height="480"/>
-	<splash src="res/screens/ios/screen-iphone-portrait-2x.png" width="640" height="960"/>
-	<splash src="res/screens/ios/screen-iphone-portrait-568h-2x.png" width="640" height="1136"/>
-	<splash src="res/screens/ios/screen-iphone-portrait-667h.png" width="750" height="1334"/>
-	<splash src="res/screens/ios/screen-iphone-portrait-736h.png" width="1242" height="2208"/>
-	<splash src="res/screens/ios/screen-ipad-portrait.png" width="768" height="1024"/>
-	<splash src="res/screens/ios/screen-ipad-portrait-2x.png" width="1536" height="2048"/>
+	<splash src="res/screen/ios/Default@2x~universal~anyany.png" />
 	<icon qualifier="ldpi" src="res/icons/android/icon-36-ldpi.png" />
 	<icon qualifier="mdpi" src="res/icons/android/icon-48-mdpi.png" />
 	<icon qualifier="hdpi" src="res/icons/android/icon-72-hdpi.png" />
