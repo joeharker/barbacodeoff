@@ -1,5 +1,9 @@
 ﻿trackJs.configure({ application: 'roo-phonegap' });
 
+window.addEventListener('onload', function () { logService.write('onload'); }, false);
+
+document.addEventListener('DOMContentLoaded', function () { logService.write('DOMContentLoaded'); }, false);
+
 var images = [
 	'heros/bowl-hero-desktop.jpg',
 	'heros/bowl-hero-mobile-2x.jpg',

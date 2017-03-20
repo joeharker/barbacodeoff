@@ -12,10 +12,6 @@
 		log.write({ onCssCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
-	function onInAppBrowserLoadStart() {
-		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000});
-	}
-
 	function onInAppBrowserLoadError(params) {
 		log.write({ onInAppBrowserLoadError: params });
 		onInAppBrowserExit();
@@ -75,11 +71,16 @@
 		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 	}
 
+	function onInAppBrowserLoadStart() {
+		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
+		runCustomScripts();
+	}
+
 	function onInAppBrowserLoadStop() {
 		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
 		inAppBrowserRef.show();
 		loadCustomStyles();
-		runCustomScripts();
+		//runCustomScripts();
 	}
 
 	function onDeviceReady() {
