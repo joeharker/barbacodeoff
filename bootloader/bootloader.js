@@ -93,9 +93,13 @@
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
 
+		inAppBrowserRef.executeScript({
+			code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded A'); }, false);"
+		}, onScriptCallback);
+
 		setTimeout(function () {
 			inAppBrowserRef.executeScript({
-				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded'); }, false);"
+				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded B'); }, false);"
 			}, onScriptCallback);
 		}, 1000);
 	}
