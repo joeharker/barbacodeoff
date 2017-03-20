@@ -68,6 +68,7 @@
 	}
 
 	function onInAppBrowserExit() {
+		log.write({ onInAppBrowserExit: ((new Date()).getTime() - timmer) / 1000, inAppBrowserRef: inAppBrowserRef });
 		//if they exit too far lets get them back into the InAppBrowser
 		if (inAppBrowserRef !== undefined) {
 			inAppBrowserRef.close();
