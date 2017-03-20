@@ -72,16 +72,16 @@
 		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
 	}
 
-	function onInAppBrowserLoadStop() {
-		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
+	function onInAppBrowserLoadStop(params) {
+		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000, params: params });
 		inAppBrowserRef.show();
 		loadCustomStyles();
 		runCustomScripts();
 	}
 
-	function onDeviceReady() {
-		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
-		//navigator.splashscreen.hide();
+	function onDeviceReady(params) {
+		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000, params: params });
+		navigator.splashscreen.hide();
 		inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 		inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
