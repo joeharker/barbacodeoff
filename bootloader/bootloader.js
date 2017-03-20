@@ -14,7 +14,6 @@
 
 	function onInAppBrowserLoadStart() {
 		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000});
-		onInAppBrowserExit();
 	}
 
 	function onInAppBrowserLoadError(params) {
