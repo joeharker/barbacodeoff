@@ -85,7 +85,7 @@
 	function onDeviceReady() {
 		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
 		//navigator.splashscreen.hide();
-		if (inAppBrowserRef) {
+		if (!inAppBrowserRef) {
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
