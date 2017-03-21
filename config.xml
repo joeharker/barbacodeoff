@@ -46,6 +46,7 @@
     <plugin name="cordova-plugin-vibration" />
 		<plugin name="cordova-plugin-whitelist" />
   -->
+	<plugin name="cordova-plugin-splashscreen" />
 	<plugin name="cordova-plugin-device" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-whitelist" />
@@ -72,7 +73,11 @@
 	<icon qualifier="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
 	<icon qualifier="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
 	<icon qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
-	<splash src="splash.png" />
+	<splash src="res/screen/ios/Default@2x~universal~anyany.png" />
+	<splash qualifier="ldpi" src="res/screens/android/screen-ldpi-portrait.png"/>
+	<splash qualifier="mdpi" src="res/screens/android/screen-mdpi-portrait.png"/>
+	<splash qualifier="hdpi" src="res/screens/android/screen-hdpi-portrait.png"/>
+	<splash qualifier="xhdpi" src="res/screens/android/screen-xhdpi-portrait.png"/>
 
   <access origin="*" />
 	<allow-navigation href="*://*.chipotle.com/*" />
