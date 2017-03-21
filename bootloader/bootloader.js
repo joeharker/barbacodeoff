@@ -5,11 +5,11 @@
 	var timmer = (new Date()).getTime();
 
 	function onScriptCallback(params) {
-		log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
+		//log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
 	function onCssCallback(params) {
-		log.write({ onCssCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
+		//log.write({ onCssCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
 	function onInAppBrowserLoadError(params) {
@@ -63,7 +63,7 @@
 	}
 
 	function onInAppBrowserExit() {
-		log.write({ onInAppBrowserExit: ((new Date()).getTime() - timmer) / 1000 });
+		//log.write({ onInAppBrowserExit: ((new Date()).getTime() - timmer) / 1000 });
 		//if they exit too far lets get them back into the InAppBrowser
 		if (inAppBrowserRef !== undefined) {
 			inAppBrowserRef = undefined;
@@ -72,18 +72,28 @@
 	}
 
 	function onInAppBrowserLoadStart() {
-		log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
+		//log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
+
+		inAppBrowserRef.executeScript({
+			code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded C'); }, false);"
+		}, onScriptCallback);
+
+		setTimeout(function () {
+			inAppBrowserRef.executeScript({
+				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded D'); }, false);"
+			}, onScriptCallback);
+		}, 1000);
 	}
 
 	function onInAppBrowserLoadStop() {
-		log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
+		//log.write({ onInAppBrowserLoadStop: ((new Date()).getTime() - timmer) / 1000 });
 		inAppBrowserRef.show();
 		loadCustomStyles();
 		runCustomScripts();
 	}
 
 	function onDeviceReady() {
-		log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
+		//log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
 		//navigator.splashscreen.hide();
 		if (inAppBrowserRef === undefined) {
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
