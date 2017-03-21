@@ -2,7 +2,7 @@
 
 (function (log) {
 	var inAppBrowserRef = undefined;
-	var timmer = (new Date()).getTime();
+	//var timmer = (new Date()).getTime();
 
 	function onScriptCallback(params) {
 		//log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
