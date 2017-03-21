@@ -68,7 +68,9 @@
 		if (inAppBrowserRef !== undefined) {
 			inAppBrowserRef = undefined;
 		}
-		setTimeout(function () { onDeviceReady(); }, config.reloadDelay);
+		if (!config.debug) {
+			navigator.app.exitApp();
+		}
 	}
 
 	function onInAppBrowserLoadStart() {
@@ -84,11 +86,10 @@
 
 	function onDeviceReady() {
 		//log.write({ onDeviceReady: ((new Date()).getTime() - timmer) / 1000 });
-		//navigator.splashscreen.hide();
 		if (inAppBrowserRef === undefined) {
-			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
-			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
+			inAppBrowserRef = cordova.InAppBrowser.open(config.url + '?app=' + device.platform + config.version, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 			//inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
+			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
@@ -107,5 +108,7 @@
 		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
 
-	setTimeout(function () { speedTest(); }, 1000);
+	if (config.debug) {
+		setTimeout(function () { speedTest(); }, 1000);
+	}
 })(logService);
