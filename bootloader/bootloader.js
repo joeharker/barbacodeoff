@@ -75,14 +75,8 @@
 		//log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
 
 		inAppBrowserRef.executeScript({
-			code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded C'); }, false);"
+			code: "document.addEventListener('DOMContentLoaded', function () { log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 }); inAppBrowserRef.show(); }, false);"
 		}, onScriptCallback);
-
-		setTimeout(function () {
-			inAppBrowserRef.executeScript({
-				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded D'); }, false);"
-			}, onScriptCallback);
-		}, 1000);
 	}
 
 	function onInAppBrowserLoadStop() {
@@ -102,16 +96,6 @@
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
-
-		inAppBrowserRef.executeScript({
-			code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded A'); }, false);"
-		}, onScriptCallback);
-
-		setTimeout(function () {
-			inAppBrowserRef.executeScript({
-				code: "document.addEventListener('DOMContentLoaded', function () { alert('DOMContentLoaded B'); }, false);"
-			}, onScriptCallback);
-		}, 1000);
 	}
 
 	//when cordova is ready
