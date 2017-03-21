@@ -5,7 +5,8 @@
 	var timmer = (new Date()).getTime();
 
 	function onScriptCallback(params) {
-		//log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
+		log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
+		inAppBrowserRef.show();
 	}
 
 	function onCssCallback(params) {
@@ -75,7 +76,7 @@
 		//log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
 
 		inAppBrowserRef.executeScript({
-			code: "document.addEventListener('DOMContentLoaded', function () { log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 }); inAppBrowserRef.show(); }, false);"
+			code: "document.addEventListener('DOMContentLoaded', function () { var t = 0; }, false);"
 		}, onScriptCallback);
 	}
 
