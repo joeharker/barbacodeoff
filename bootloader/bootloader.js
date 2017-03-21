@@ -5,8 +5,7 @@
 	var timmer = (new Date()).getTime();
 
 	function onScriptCallback(params) {
-		log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
-		inAppBrowserRef.show();
+		//log.write({ onScriptCallback: ((new Date()).getTime() - timmer) / 1000, params: params });
 	}
 
 	function onCssCallback(params) {
@@ -74,10 +73,6 @@
 
 	function onInAppBrowserLoadStart() {
 		//log.write({ onInAppBrowserLoadStart: ((new Date()).getTime() - timmer) / 1000 });
-
-		inAppBrowserRef.executeScript({
-			code: "document.addEventListener('DOMContentLoaded', function () { var t = 0; }, false);"
-		}, onScriptCallback);
 	}
 
 	function onInAppBrowserLoadStop() {
@@ -93,7 +88,7 @@
 		if (inAppBrowserRef === undefined) {
 			inAppBrowserRef = cordova.InAppBrowser.open(config.url, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 			inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
-			inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
+			//inAppBrowserRef.addEventListener('loadstart', onInAppBrowserLoadStart);
 			inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 			inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
 		}
