@@ -3,7 +3,7 @@
 var config = (function () {
 	var env = { DEV: 0, QA: 1, STAGE: 2, PROD: 3 };
 
-	var environment = env.QA;
+	var environment = env.PROD;
 
 	//PROD as default values
 	var values = {
