@@ -15,6 +15,7 @@
 	<preference name="ios-statusbarstyle" value="black-opaque" />
 	<preference name="detect-data-types" value="true" />
 	<preference name="exit-on-suspend" value="false" />
+	<preference name="SplashScreen" value="splash" />
 	<preference name="show-splash-screen-spinner" value="false" />
 	<preference name="auto-hide-splash-screen" value="true" />
 	<preference name="SplashScreenDelay" value="0"/>
@@ -45,6 +46,7 @@
     <plugin name="cordova-plugin-vibration" />
 		<plugin name="cordova-plugin-whitelist" />
   -->
+	<plugin name="cordova-plugin-splashscreen" />
 	<plugin name="cordova-plugin-device" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-whitelist" />
@@ -72,6 +74,13 @@
 	<icon qualifier="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
 	<icon qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
 	<splash src="splash.png" />
+	<splash src="res/screens/ios/screen-iphone-portrait.png" width="320" height="480"/>
+	<splash src="res/screens/ios/screen-iphone-portrait-2x.png" width="640" height="960"/>
+	<splash src="res/screens/ios/screen-iphone-portrait-568h-2x.png" width="640" height="1136"/>
+	<splash src="res/screens/ios/screen-iphone-portrait-667h.png" width="750" height="1334"/>
+	<splash src="res/screens/ios/screen-iphone-portrait-736h.png" width="1242" height="2208"/>
+	<splash src="res/screens/ios/screen-ipad-portrait.png" width="768" height="1024"/>
+	<splash src="res/screens/ios/screen-ipad-portrait-2x.png" width="1536" height="2048"/>
 	<splash qualifier="ldpi" src="res/screens/android/screen-ldpi-portrait.png"/>
 	<splash qualifier="mdpi" src="res/screens/android/screen-mdpi-portrait.png"/>
 	<splash qualifier="hdpi" src="res/screens/android/screen-hdpi-portrait.png"/>
