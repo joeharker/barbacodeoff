@@ -78,11 +78,15 @@ var logService = (function () {
 	}
 
 	function init(debugging) {
+		window._trackJs = {
+			token: '8f6744a50bbd43fe8e20564e7c682048',
+			application: 'roo-phonegap'
+		};
+
 		//error handler
 		window.onerror = function (msg, url, line, col, error) {
-			//can add a service call to upload errors to a DB
-			//try catch the send so we dont end up in a reporting loop
 			write(['Error event', error]);
+			trackJs.track(error);
 		};
 
 		if (debugging) {
