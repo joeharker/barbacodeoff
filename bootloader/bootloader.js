@@ -48,7 +48,6 @@
 
 	function onInAppBrowserLoadStop() {
 		inAppBrowserRef.show();
-		loadCustomStyles();
 		runCustomScripts();
 	}
 
