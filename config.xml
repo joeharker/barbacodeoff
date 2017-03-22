@@ -89,7 +89,7 @@
 
   <access origin="*" />
 	<allow-navigation href="*://*.chipotle.com/*" />
-  <allow-intent href="*://*.chipotle.com/*" />
+  <allow-intent href="*" />
   <allow-intent href="tel:*" />
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
