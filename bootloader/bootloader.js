@@ -37,7 +37,7 @@
 		//do not put a return in the custom javascript
 		//WARNING//inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
 		httpGet(getRoot() + 'custom.js', function (js) {
-			inAppBrowserRef.executeScript({ code: js }, function () { });
+			inAppBrowserRef.executeScript({ code: js });
 		});
 	}
 
