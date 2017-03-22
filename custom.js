@@ -1,6 +1,4 @@
-﻿trackJs.configure({ application: 'roo-phonegap' });
-
-var images = [
+﻿var images = [
 	'heros/bowl-hero-desktop.jpg',
 	'heros/bowl-hero-mobile-2x.jpg',
 	'heros/bowl-hero-mobile.jpg',
@@ -239,7 +237,7 @@ for (var i in images) {
 	img.width = 10;
 	img.height = 10;
 	img.style.position = 'absolute';
-	img.style.bottom = '10px';
+	img.style.top = '10px';
 	img.style.left = '10px';
 	img.style.zIndex = '999';
 	document.body.appendChild(img);
