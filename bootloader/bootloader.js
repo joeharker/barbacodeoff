@@ -61,6 +61,7 @@
 	}
 
 	function onDeviceReady() {
+		log.write(config.url + '?app=' + device.platform + config.version);
 		inAppBrowserRef = cordova.InAppBrowser.open(config.url + '?app=' + device.platform + config.version, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);

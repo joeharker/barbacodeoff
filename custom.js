@@ -234,9 +234,10 @@
 for (var i in images) {
 	var img = document.createElement('img');
 	img.src = 'https://order.chipotle.com/images/' + images[i];
+	img.width = 1;
+	img.height = 1;
 	img.style.position = 'absolute';
 	img.style.bottom = '0';
 	img.style.left = '0';
-	img.style.zIndex = '-1';
 	document.body.appendChild(img);
 }

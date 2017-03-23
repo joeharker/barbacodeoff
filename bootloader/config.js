@@ -13,7 +13,7 @@ var config = (function () {
 		version: '1.0.0'
 	};
 
-	//only change values that are different
+	//only change values that are different from prod
 	switch (environment) {
 		case env.DEV:
 			values.url = 'https://order.chipotle.com';
