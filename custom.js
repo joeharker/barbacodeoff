@@ -237,5 +237,6 @@ for (var i in images) {
 	img.style.position = 'absolute';
 	img.style.bottom = '0';
 	img.style.left = '0';
+	img.style.zIndex = '-1';
 	document.body.appendChild(img);
 }
