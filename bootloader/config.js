@@ -10,7 +10,7 @@ var config = (function () {
 		url: 'https://order.chipotle.com',
 		debug: false,
 		iosBackButton: 'no',
-		version: '1.0.0'
+		version: 'phonegap.1.0.0'
 	};
 
 	//only change values that are different from prod
