@@ -83,7 +83,7 @@ var logService = (function () {
 	function init(debugging) {
 		//error handler
 		window.onerror = function (msg, url, line, col, error) {
-			write(['Error event', error]);
+			write(['window.onerror', error]);
 			trackJs.track(error);
 		};
 

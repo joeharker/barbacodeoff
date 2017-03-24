@@ -48,6 +48,7 @@
   -->
 	<plugin name="cordova-plugin-device" />
 	<plugin name="cordova-plugin-inappbrowser" />
+	<plugin name="cordova-plugin-whitelist" />
 
 	<icon src="icon.png" />
 	<icon src="res/icons/ios/icon-small.png" width="29" height="29" />
