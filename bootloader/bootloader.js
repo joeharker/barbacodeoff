@@ -93,8 +93,8 @@
 		download.onload = function () {
 			log.write({ ten_k_duration: ((new Date()).getTime() - startTime) / 1000 });
 		};
-		download.onerror = function (e) {
-			log.write(['You apear to be off line', e]);
+		download.onerror = function () {
+			log.write(['You apear to be off line']);
 		};
 		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
