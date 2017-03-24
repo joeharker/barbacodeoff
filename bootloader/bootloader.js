@@ -46,7 +46,8 @@
 
 	function onInAppBrowserLoadError(e) {
 		log.write({ onInAppBrowserLoadError: e });
-		onInAppBrowserExit();
+		inAppBrowserRef.close();
+		//TODO: display off line messaging
 	}
 
 	function onInAppBrowserLoadStop() {
