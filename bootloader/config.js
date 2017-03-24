@@ -10,7 +10,7 @@ var config = (function () {
 		url: 'https://order.chipotle.com',
 		debug: false,
 		iosBackButton: 'no',
-		version: 'phonegap.1.0.0',
+		version: '1.0.0',
 		trackjsToken: '8f6744a50bbd43fe8e20564e7c682048',
 		trackjsApp: 'roo-phonegap'
 	};

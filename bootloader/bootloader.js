@@ -74,7 +74,7 @@
 
 	function onDeviceReady() {
 		inAppBrowserRef = cordova.InAppBrowser.open(
-			config.url + '?app=' + config.version + '&platform=' + device.platform,
+			config.url + '?appname=phonegap&appversion=' + config.version + '&platform=' + device.platform,
 			'_blank',
 			'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton
 		);
