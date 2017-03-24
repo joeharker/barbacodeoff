@@ -38,7 +38,7 @@
 
 	function runCustomScripts() {
 		//WARNING// do not put a return in the custom javascript
-		//WARNING// inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	//Docs say this works but it does not: 
+		//WARNING// inAppBrowserRef.executeScript({ file: getRoot() + 'custom.js' }, onScriptCallback);	// <- Docs say this works but it does not: 
 		httpGet(getRoot() + 'custom.js', function (js) {
 			inAppBrowserRef.executeScript({ code: js });
 		});
@@ -61,7 +61,11 @@
 	}
 
 	function onDeviceReady() {
-		inAppBrowserRef = cordova.InAppBrowser.open(config.url + '?app=' + config.version + '&platform=' + device.platform, '_blank', 'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton);
+		inAppBrowserRef = cordova.InAppBrowser.open(
+			config.url + '?app=' + config.version + '&platform=' + device.platform,
+			'_blank',
+			'location=no,hidden=yes,clearcache=no,clearsessioncache=no,disallowoverscroll=yes,toolbar=' + config.iosBackButton
+		);
 		inAppBrowserRef.addEventListener('loaderror', onInAppBrowserLoadError);
 		inAppBrowserRef.addEventListener('loadstop', onInAppBrowserLoadStop);
 		inAppBrowserRef.addEventListener('exit', onInAppBrowserExit);
@@ -76,6 +80,9 @@
 		var startTime = (new Date()).getTime();
 		download.onload = function () {
 			log.write({ ten_k_duration: ((new Date()).getTime() - startTime) / 1000 });
+		};
+		download.onerror = function () {
+			log.write({ ten_k_duration: 'You apear to be off line' });
 		};
 		download.src = 'https://order.chipotle.com/images/pepper.jpg' + "?n=" + Math.random();
 	}
