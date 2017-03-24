@@ -87,7 +87,7 @@
 	<splash qualifier="hdpi" src="res/screens/android/screen-hdpi-portrait.png"/>
 	<splash qualifier="xhdpi" src="res/screens/android/screen-xhdpi-portrait.png"/>
 
-  <access origin="*" />
+  <access origin="*://*.chipotle.com/*" />
 	<allow-navigation href="*://*.chipotle.com/*" />
   <allow-intent href="*" />
   <allow-intent href="tel:*" />

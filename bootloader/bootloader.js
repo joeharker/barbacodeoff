@@ -45,9 +45,20 @@
 	}
 
 	function onInAppBrowserLoadError(e) {
-		log.write({ onInAppBrowserLoadError: e });
+		switch (e.code) {
+			//these do not catch offline errors if any of the page has been cached
+			case -1009:
+			case -2:
+				log.write(['Airplane Mode', e]);
+				break;
+			case 1:
+				log.write(['Whitelist block', e]);
+				break;
+			default:
+				log.write({ onInAppBrowserLoadError: e });
+		}
+
 		inAppBrowserRef.close();
-		//TODO: display off line messaging
 	}
 
 	function onInAppBrowserLoadStop() {
