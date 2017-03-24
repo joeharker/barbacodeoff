@@ -1,6 +1,8 @@
 'use strict';
 
 var logService = (function () {
+	var maxRecursions = 0;
+
 	//pretty logger
 	function addCell(row, text, clas) {
 		var cel = row.insertCell();
@@ -13,7 +15,7 @@ var logService = (function () {
 		cel.appendChild(spn);
 	}
 
-	function addRow(obj, key, table, maxRecursions) {
+	function addRow(obj, key, table) {
 		var value = obj[key];
 		var thatType = Object.prototype.toString.call(value); //more detail than typeof
 		var row = table.insertRow();
@@ -21,8 +23,11 @@ var logService = (function () {
 		addCell(row, thatType, 'type');
 		addCell(row, key, 'name');
 
-		if (maxRecursions > 0 && typeof value === 'object' && value !== null
-				&& key !== 'enabledPlugin' //this is a recursive link to the plug in that lists its self
+		if (
+			maxRecursions > 0
+			&& typeof value === 'object'
+			&& value !== null
+			&& key !== 'enabledPlugin' //this is a recursive link to the plug in that lists its self
 		) {
 			var cel = row.insertCell();
 			cel.innerHTML = objectToTable(value, --maxRecursions).outerHTML;
@@ -31,25 +36,22 @@ var logService = (function () {
 		}
 	}
 
-	function objectToTable(obj, maxRecursions) {
+	function objectToTable(obj) {
 		var table = document.createElement('table');
-		if (maxRecursions === undefined) {
-			maxRecursions = 20;
-		}
 
 		if (typeof obj === 'string') {
 			try {
-				addRow([JSON.parse(obj)], 0, table, maxRecursions);
+				addRow([JSON.parse(obj)], 0, table);
 			} catch (e) {
-				addRow([obj], 0, table, maxRecursions);
+				addRow([obj], 0, table);
 			}
 		} else {
 			Object.getOwnPropertyNames(obj).forEach(function (key) {
-				addRow(obj, key, table, maxRecursions);
+				addRow(obj, key, table);
 			});
 			for (var key in obj) {
 				if (!obj.hasOwnProperty(key)) {
-					addRow(obj, key, table, maxRecursions);
+					addRow(obj, key, table);
 				}
 			}
 		}
@@ -60,10 +62,11 @@ var logService = (function () {
 	//public methods
 	function write(obj) {
 		console.log(obj);
-
+		
 		//debug dump to screen for mobile testing
 		var debug = document.getElementById('debug');
 		if (debug) {
+			maxRecursions = 20;
 			var table = document.createElement('table');
 			var thatType = Object.prototype.toString.call(obj); //more detail than typeof
 			var row = table.insertRow();
@@ -78,11 +81,6 @@ var logService = (function () {
 	}
 
 	function init(debugging) {
-		window._trackJs = {
-			token: '8f6744a50bbd43fe8e20564e7c682048',
-			application: 'roo-phonegap'
-		};
-
 		//error handler
 		window.onerror = function (msg, url, line, col, error) {
 			write(['Error event', error]);

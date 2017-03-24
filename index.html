@@ -8,8 +8,17 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<link href="bootloader/bootloader.css" rel="stylesheet" />
 	<script src="bootloader/config.js"></script>
+	<script>
+		window._trackJs = {
+			token: config.trackjsToken,
+			application: config.trackjsApp
+		};
+	</script>
+	<script type="text/javascript" src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
 	<script src="bootloader/logService.js"></script>
-	<script>logService.init(config.debug);</script>
+	<script>
+		logService.init(config.debug);
+	</script>
 	<script src="cordova.js"></script>
 	<script src="bootloader/bootloader.js"></script>
 </head>
