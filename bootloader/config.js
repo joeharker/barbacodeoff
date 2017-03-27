@@ -3,7 +3,7 @@
 var config = (function () {
 	var env = { DEV: 0, QA: 1, STAGE: 2, PROD: 3 };
 
-	var environment = env.QA;
+	var environment = env.DEV;
 
 	//PROD as default values
 	var values = {
@@ -18,7 +18,7 @@ var config = (function () {
 	//only change values that are different from prod
 	switch (environment) {
 		case env.DEV:
-			//values.url = 'https://dev1-order.chipotle.com';
+			values.url = 'https://dev1-order.chipotle.com';
 			values.debug = true,
 			values.iosBackButton = 'yes';
 			break;
